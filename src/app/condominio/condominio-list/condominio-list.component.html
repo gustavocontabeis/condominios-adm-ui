@@ -1,5 +1,6 @@
-<p-table [value]="condominios" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,15,20,50,100]" [lazy]="true" (onLazyLoad)="consultarPaginado($event)" responsiveLayout="scroll" [totalRecords]="totalRecords"
-    sortMode="multiple">
+<p-table [value]="condominios" #dt1 [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,15,20,50,100]" [lazy]="true" (onLazyLoad)="consultarPaginado($event)" responsiveLayout="scroll" [totalRecords]="totalRecords"
+    sortMode="multiple"
+    [showCurrentPageReport]="true" currentPageReportTemplate="Exibindo {first} até {last} de {totalRecords} registros.">
     <ng-template pTemplate="header">
      <tr>
         <th pSortableColumn="id">Id<p-sortIcon field="id"></p-sortIcon></th>
