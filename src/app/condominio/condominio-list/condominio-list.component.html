@@ -1,12 +1,13 @@
-<p-table [value]="condominios" [paginator]="true" [rows]="10" [lazy]="true" (onLazyLoad)="consultarPaginado($event)" responsiveLayout="scroll" [totalRecords]="totalRecords">
+<p-table [value]="condominios" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,15,20,50,100]" [lazy]="true" (onLazyLoad)="consultarPaginado($event)" responsiveLayout="scroll" [totalRecords]="totalRecords"
+    sortMode="multiple">
     <ng-template pTemplate="header">
      <tr>
-      <th>Id</th>
-      <th>Nome</th>
-      <th>Logradouro</th>
-      <th>Numero</th>
-      <th>Bairro</th>
-      <th>Cidade</th>
+        <th pSortableColumn="id">Id<p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="nome">Nome<p-sortIcon field="nome"></p-sortIcon></th>
+      <th pSortableColumn="logradouro">Logradouro<p-sortIcon field="logradouro"></p-sortIcon></th>
+      <th pSortableColumn="numero">Numero<p-sortIcon field="numero"></p-sortIcon></th>
+      <th pSortableColumn="bairro">Bairro<p-sortIcon field="bairro"></p-sortIcon></th>
+      <th pSortableColumn="cidade">Cidade<p-sortIcon field="cidade"></p-sortIcon></th>
       <th>Sindico</th>
       <th>&nbsp;</th>
      </tr>
@@ -19,7 +20,7 @@
       <td class="horizontal-compact" >{{condominio.numero}}</td>
       <td class="horizontal-compact" >{{condominio.bairro}}</td>
       <td class="horizontal-compact" >{{condominio.cidade}}</td>
-      <td class="horizontal-compact" ><a [routerLink]="['/sindico/sindico-add/', condominio.sindico.id]">{{condominio.null}}</a></td>
+      <td class="horizontal-compact" ><a [routerLink]="['/sindico/sindico-add/', condominio.sindico.id]">{{condominio.sindico.pessoa.nome}}</a></td>
       <td class="horizontal-compact" ><button pButton icon="pi pi-pencil" [routerLink]="['/condominio/condominio-add/', condominio.id]" title="Selecionar Condominio"></button><button pButton icon="pi pi-pencil" [routerLink]="['/bloco/condominio/', condominio.id]" title="Selecionar Blocos"></button><button pButton icon="pi pi-pencil" [routerLink]="['/faturamento/condominio/', condominio.id]" title="Selecionar Faturamentos"></button></td>
      </tr>
     </ng-template>

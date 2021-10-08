@@ -66,6 +66,7 @@ export class CondominioListComponent implements OnInit {
   }
 
   consultarPaginado(event: LazyLoadEvent) {
+    console.log(event);
     this.condominioService.consultarPaginado(event).subscribe((resposta: any) => {
       console.log(resposta);
       this.condominios = resposta.content as Condominio[];
