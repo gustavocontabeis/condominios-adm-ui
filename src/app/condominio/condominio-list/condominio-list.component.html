@@ -1,0 +1,27 @@
+<p-table [value]="condominios" [paginator]="true" [rows]="10" [lazy]="true" (onLazyLoad)="consultarPaginado($event)" responsiveLayout="scroll" [totalRecords]="totalRecords">
+    <ng-template pTemplate="header">
+     <tr>
+      <th>Id</th>
+      <th>Nome</th>
+      <th>Logradouro</th>
+      <th>Numero</th>
+      <th>Bairro</th>
+      <th>Cidade</th>
+      <th>Sindico</th>
+      <th>&nbsp;</th>
+     </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-condominio>
+     <tr>
+      <td class="horizontal-compact" style="text-align: right;">{{condominio.id}}</td>
+      <td class="horizontal-compact" >{{condominio.nome}}</td>
+      <td class="horizontal-compact" >{{condominio.logradouro}}</td>
+      <td class="horizontal-compact" >{{condominio.numero}}</td>
+      <td class="horizontal-compact" >{{condominio.bairro}}</td>
+      <td class="horizontal-compact" >{{condominio.cidade}}</td>
+      <td class="horizontal-compact" ><a [routerLink]="['/sindico/sindico-add/', condominio.sindico.id]">{{condominio.null}}</a></td>
+      <td class="horizontal-compact" ><button pButton icon="pi pi-pencil" [routerLink]="['/condominio/condominio-add/', condominio.id]" title="Selecionar Condominio"></button><button pButton icon="pi pi-pencil" [routerLink]="['/bloco/condominio/', condominio.id]" title="Selecionar Blocos"></button><button pButton icon="pi pi-pencil" [routerLink]="['/faturamento/condominio/', condominio.id]" title="Selecionar Faturamentos"></button></td>
+     </tr>
+    </ng-template>
+   </p-table>
+   
