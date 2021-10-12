@@ -1,4 +1,4 @@
-import { Condominio } from './condominio';
+import { Bloco } from './bloco';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -8,24 +8,24 @@ import { LazyLoadEvent } from 'primeng/api';
 @Injectable({
   providedIn: 'root'
 })
-export class CondominioService {
+export class BlocoService {
 
   apiUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.apiUrl = environment.apiUrl + '/condominios';
+    this.apiUrl = environment.apiUrl + '/blocos';
   }
 
-  adicionar(condominio: Condominio): any {
-    console.log('adicionar', condominio);
-    return this.httpClient.post(this.apiUrl, condominio);
+  adicionar(bloco: Bloco): any {
+    console.log('adicionar', bloco);
+    return this.httpClient.post(this.apiUrl, bloco);
   }
 
   buscar(id: number): any {
     console.log('buscar', this.apiUrl);
     return this.httpClient.get(this.apiUrl + '/' + id);
   }
-
+  
   consultar(): any {
     console.log('consultar', this.apiUrl);
     return this.httpClient.get(this.apiUrl);
@@ -36,14 +36,14 @@ export class CondominioService {
     return this.httpClient.post(this.apiUrl + '/page', event);
   }
 
-  excluir(condominio: Condominio): any {
-    console.log('excluir', condominio);
-    return this.httpClient.delete(this.apiUrl + '/' + condominio.id);
+  excluir(bloco: Bloco): any {
+    console.log('excluir', bloco);
+    return this.httpClient.delete(this.apiUrl + '/' + bloco.id);
   }
 
-  buscarPorSindico(idSindico: number) {
-    console.log('buscar por idSindico', idSindico);
-    return this.httpClient.get(this.apiUrl + '/sindico/' + idSindico);
+  buscarPorCondominio(idCondominio: number) {
+    console.log('buscar por idCondominio', idCondominio);
+    return this.httpClient.get(this.apiUrl + '/condominio/' + idCondominio);
   }
+
 }
-

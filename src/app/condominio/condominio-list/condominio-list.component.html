@@ -2,16 +2,25 @@
     sortMode="multiple"
     [showCurrentPageReport]="true" currentPageReportTemplate="Exibindo {first} até {last} de {totalRecords} registros.">
     <ng-template pTemplate="header">
-     <tr>
-        <th pSortableColumn="id">Id<p-sortIcon field="id"></p-sortIcon></th>
-        <th pSortableColumn="nome">Nome<p-sortIcon field="nome"></p-sortIcon></th>
-      <th pSortableColumn="logradouro">Logradouro<p-sortIcon field="logradouro"></p-sortIcon></th>
-      <th pSortableColumn="numero">Numero<p-sortIcon field="numero"></p-sortIcon></th>
-      <th pSortableColumn="bairro">Bairro<p-sortIcon field="bairro"></p-sortIcon></th>
-      <th pSortableColumn="cidade">Cidade<p-sortIcon field="cidade"></p-sortIcon></th>
-      <th>Sindico</th>
-      <th>&nbsp;</th>
-     </tr>
+      <tr>
+        <th pSortableColumn="id">Id
+          <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
+         <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="nome">Nome
+          <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
+         <p-sortIcon field="nome"></p-sortIcon></th>
+        <th pSortableColumn="logradouro">Logradouro
+         <p-sortIcon field="logradouro"></p-sortIcon></th>
+        <th pSortableColumn="numero">Numero
+         <p-sortIcon field="numero"></p-sortIcon></th>
+        <th pSortableColumn="bairro">Bairro
+         <p-sortIcon field="bairro"></p-sortIcon></th>
+        <th pSortableColumn="cidade">Cidade
+         <p-sortIcon field="cidade"></p-sortIcon></th>
+        <th pSortableColumn="sindico">Sindico
+         <p-sortIcon field="sindico"></p-sortIcon></th>
+        <th>&nbsp;</th>
+       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-condominio>
      <tr>
