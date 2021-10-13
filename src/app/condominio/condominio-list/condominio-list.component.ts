@@ -13,6 +13,7 @@ import { Item } from 'src/app/models/dto/item';
 export class CondominioListComponent implements OnInit {
 
   condominios!: Condominio[];
+  condominio!: Condominio;
   totalRecords: number = 0;
   filters: Item[] = [];
   
@@ -26,29 +27,28 @@ export class CondominioListComponent implements OnInit {
     private condominioService: CondominioService) { }
 
   ngOnInit() {
+    this.condominio = new Condominio();
+    this.condominio.sindico = {pessoa:{}};
 //[ngOnInit]
 //[buscarFK]
     this.activatedRoute.params.subscribe(params => {
-      // if (params.id_sindico) {
-      //   const idsindico = params.id_sindico ? Number(params.id_sindico) : null;
-      //   this.buscarCondominioPorSindico(idsindico);
-      // }
-    });
-  }
-
-  buscarCondominioPorSindico(idSindico: number) {
-    this.condominioService.buscarPorSindico(idSindico).subscribe(resposta => {
-      this.condominios = resposta as Condominio[];
-    }, error => {
-      console.log(error);
-      alert('erro Sindico.' + error);
+      if (params.id_sindico) {
+        console.log('id_sindico', params.id_sindico);
+        const idSindico = params.id_sindico ? Number(params.id_sindico) : null;
+        this.condominio.sindico.id = idSindico;
+      }
     });
   }
 
   consultarPaginado(event: LazyLoadEvent) {
-    console.log(">>>>>>>>>>>>>>");
     this.filters = this.formatFilters( event );
-    console.log(">>>>>>>>>>>>>>!");
+    if(this.condominio.sindico.id){
+      let it = new Item();
+      it.field = 'sindico.id';
+      it.matchMode = 'equals';
+      it.value = this.condominio.sindico.id;
+      this.filters.push(it);
+    }
     event.globalFilter = this.filters;
     console.log(this.filters);
     this.condominioService.consultarPaginado(event).subscribe((resposta: any) => {
