@@ -1,0 +1,25 @@
+<p-table [value]="faturamentos" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,15,20,50,100]" [lazy]="true" (onLazyLoad)="consultarPaginado($event)" responsiveLayout="scroll" [totalRecords]="totalRecords" sortMode="multiple" [showCurrentPageReport]="true" currentPageReportTemplate="Exibindo {first} até {last} de {totalRecords} registros.">
+    <ng-template pTemplate="header">
+     <tr>
+      <th pSortableColumn="id">Id
+       <p-sortIcon field="id"></p-sortIcon>
+       <p-columnFilter type="text" field="id" display="menu"></p-columnFilter></th>
+      <th pSortableColumn="periodo">Periodo
+       <p-sortIcon field="periodo"></p-sortIcon>
+       <p-columnFilter type="text" field="periodo" display="menu"></p-columnFilter></th>
+      <th pSortableColumn="condominio">Condominio
+       <p-sortIcon field="condominio"></p-sortIcon>
+       <p-columnFilter type="text" field="condominio.id" display="menu"></p-columnFilter></th>
+      <th>&nbsp;</th>
+     </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-faturamento>
+     <tr>
+      <td class="horizontal-compact" style="text-align: right;">{{faturamento.id}}</td>
+      <td class="horizontal-compact">{{faturamento.periodo}}</td>
+      <td class="horizontal-compact"><a [routerLink]="['/condominio/', faturamento.condominio.id]">{{faturamento.condominio.nome}}</a></td>
+      <td><button pButton icon="pi pi-pencil" [routerLink]="['/faturamento/faturamento-add/', faturamento.id]" title="Selecionar Faturamento"></button><button pButton icon="pi pi-list" [routerLink]="['/boleto/faturamento/', faturamento.id]" title="Selecionar Boletos"></button></td>
+     </tr>
+    </ng-template>
+   </p-table>
+   

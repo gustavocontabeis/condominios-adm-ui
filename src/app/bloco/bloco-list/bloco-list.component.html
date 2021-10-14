@@ -1,24 +1,32 @@
-<p-table [value]="blocos" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,15,20,50,100]" [lazy]="true" (onLazyLoad)="consultarPaginado($event)" responsiveLayout="scroll" [totalRecords]="totalRecords" sortMode="multiple" [showCurrentPageReport]="true" currentPageReportTemplate="Exibindo {first} até {last} de {totalRecords} registros.">
+<p-table [value]="blocos" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,15,20,50,100]" [lazy]="true" 
+(onLazyLoad)="consultarPaginado($event)" responsiveLayout="scroll" [totalRecords]="totalRecords" sortMode="multiple" 
+[showCurrentPageReport]="true" currentPageReportTemplate="Exibindo {first} até {last} de {totalRecords} registros.">
     <ng-template pTemplate="header">
      <tr>
       <th pSortableColumn="id">Id
+        <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
        <p-sortIcon field="id"></p-sortIcon></th>
       <th pSortableColumn="nome">Nome
+        <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter>
        <p-sortIcon field="nome"></p-sortIcon></th>
       <th pSortableColumn="tipo">Tipo
+        <p-columnFilter type="text" field="tipo" display="menu"></p-columnFilter>
        <p-sortIcon field="tipo"></p-sortIcon></th>
-      <th pSortableColumn="condominio.nome">Condominio
-       <p-sortIcon field="condominio.nome"></p-sortIcon></th>
+      <th pSortableColumn="condominio">Condominio
+        <p-columnFilter type="text" field="condominio.id" display="menu"></p-columnFilter>
+       <p-sortIcon field="condominio"></p-sortIcon></th>
       <th>&nbsp;</th>
      </tr>
     </ng-template>
     <ng-template pTemplate="body" let-bloco>
      <tr>
       <td class="horizontal-compact" style="text-align: right;">{{bloco.id}}</td>
-      <td class="horizontal-compact" >{{bloco.nome}}</td>
-      <td class="horizontal-compact" >{{bloco.tipo}}</td>
-      <td class="horizontal-compact" ><a [routerLink]="['/condominio/condominio-add/', bloco.condominio.id]">{{bloco.condominio.nome}}</a></td>
-      <td class="horizontal-compact" ><button pButton icon="pi pi-pencil" [routerLink]="['/bloco/bloco-add/', bloco.id]" title="Selecionar Bloco"></button><button pButton icon="pi pi-list" [routerLink]="['/apartamento/bloco/', bloco.id]" title="Selecionar Apartamentos"></button></td>
+      <td class="horizontal-compact">{{bloco.nome}}</td>
+      <td class="horizontal-compact">{{bloco.tipo}}</td>
+      <td class="horizontal-compact"><a [routerLink]="['/condominio/', bloco.condominio.id]">{{bloco.condominio.nome}}</a></td>
+      <td>
+        <button pButton icon="pi pi-pencil" [routerLink]="['/bloco/bloco-add/', bloco.id]" title="Selecionar Bloco"></button>
+        <button pButton icon="pi pi-list" [routerLink]="['/apartamento/bloco/', bloco.id]" title="Selecionar Apartamentos"></button></td>
      </tr>
     </ng-template>
    </p-table>

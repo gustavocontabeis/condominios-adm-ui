@@ -1,20 +1,20 @@
-import { BlocoService } from '../bloco.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FaturamentoService } from '../faturamento.service';
 import { Component, OnInit } from '@angular/core';
-import { Bloco } from '../bloco';
+import { Faturamento } from '../faturamento';
 import { MessageService, ConfirmationService, SelectItem, LazyLoadEvent } from 'primeng/api';
 import { Item } from 'src/app/models/dto/item';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Condominio } from 'src/app/condominio/condominio';
 
 @Component({
-  selector: 'app-bloco-list',
-  templateUrl: './bloco-list.component.html',
-  styleUrls: ['./bloco-list.component.css']
+  selector: 'app-faturamento-list',
+  templateUrl: './faturamento-list.component.html',
+  styleUrls: ['./faturamento-list.component.css']
 })
-export class BlocoListComponent implements OnInit {
+export class FaturamentoListComponent implements OnInit {
 
-  blocos!: Bloco[];
-  bloco!: Bloco;
+  faturamentos!: Faturamento[];
+  faturamento!: Faturamento;
   totalRecords: number = 0;
   filters: Item[] = [];
 
@@ -25,60 +25,51 @@ export class BlocoListComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private blocoService: BlocoService) { }
+    private faturamentoService: FaturamentoService) { }
 
   ngOnInit() {
-    this.bloco = new Bloco();
-    this.bloco.condominio = new Condominio();
+    this.faturamento = new Faturamento();
+    this.faturamento.condominio = new Condominio();
 
     //[buscarFK]
     this.activatedRoute.params.subscribe(params => {
       if (params.id) {
         const id = params.id ? Number(params.id) : null;
-        console.log(id);
-        this.bloco.id = Number(params.id);
+        this.faturamento.id = Number(id);
       }
       if (params.id_condominio) {
-        const idcondominio = params.id_condominio ? Number(params.id_condominio) : null;
-        console.log(idcondominio);
-        this.bloco.condominio.id = Number(idcondominio);
+        const idCondominio = params.id_condominio ? Number(params.id_condominio) : null;
+        this.faturamento.condominio.id = Number(idCondominio);
       }
     });
-
   }
 
-  buscarBlocoPorCondominio(idCondominio: number) {
-    this.blocoService.buscarPorCondominio(idCondominio).subscribe(resposta => {
-      this.blocos = resposta as Bloco[];
+  buscarFaturamentoPorCondominio(idCondominio: number) {
+    this.faturamentoService.buscarPorCondominio(idCondominio).subscribe(resposta => {
+      this.faturamentos = resposta as Faturamento[];
     }, error => {
       console.log(error);
       alert('erro Condominio.' + error);
     });
   }
 
+
   consultarPaginado(event: LazyLoadEvent) {
     console.log(event);
     this.filters = this.formatFilters(event);
-    if (this.bloco.id) {
-      let it = new Item();
-      it.field = 'id';
-      it.matchMode = 'equals';
-      it.value = this.bloco.id + "";
-      this.filters.push(it);
-    }
-    if (this.bloco.condominio.id) {
+    if (this.faturamento.condominio.id) {
       let it = new Item();
       it.field = 'condominio.id';
       it.matchMode = 'equals';
-      it.value = this.bloco.condominio.id + "";
+      it.value = this.faturamento.condominio.id+"";
       this.filters.push(it);
     }
 
     event.globalFilter = this.filters;
     console.log(this.filters);
-    this.blocoService.consultarPaginado(event).subscribe((resposta: any) => {
+    this.faturamentoService.consultarPaginado(event).subscribe((resposta: any) => {
       console.log(resposta);
-      this.blocos = resposta.content as Bloco[];
+      this.faturamentos = resposta.content as Faturamento[];
       this.totalRecords = resposta.totalElements;
     }, (error: any) => {
       console.log(error);
@@ -119,15 +110,15 @@ export class BlocoListComponent implements OnInit {
 
 
   consultar() {
-    this.blocoService.consultar().subscribe((resposta: Bloco[]) => {
-      this.blocos = resposta as Bloco[];
+    this.faturamentoService.consultar().subscribe((resposta: Faturamento[]) => {
+      this.faturamentos = resposta as Faturamento[];
     }, (error: string) => {
       console.log(error);
-      alert('erro blocos.' + error);
+      alert('erro faturamentos.' + error);
     });
   }
 
-  onSubmit(blocoForm: any) {
+  onSubmit(faturamentoForm: any) {
 
   }
 

@@ -6,6 +6,7 @@ import { CondominioListComponent } from './condominio-list/condominio-list.compo
 
 const routes: Routes = [
   { path: '', component: CondominioListComponent },
+  { path: ':id', component: CondominioListComponent },
   { path: 'condominio-add', component: CondominioAddComponent },
   { path: 'condominio-add/:id', component: CondominioAddComponent },
   { path: 'condominio-filter', component: CondominioFilterComponent },

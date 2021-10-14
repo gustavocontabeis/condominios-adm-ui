@@ -1,22 +1,24 @@
 import { Router, ActivatedRoute } from '@angular/router';
-import { CondominioService } from '../condominio.service';
+import { MoradorService } from '../morador.service';
 import { Component, OnInit } from '@angular/core';
-import { Condominio } from '../condominio';
+import { Morador } from '../morador';
 import { MessageService, ConfirmationService, SelectItem, LazyLoadEvent } from 'primeng/api';
 import { Item } from 'src/app/models/dto/item';
+import { Apartamento } from 'src/app/apartamento/apartamento';
+import { Pessoa } from 'src/app/pessoa/pessoa';
 
 @Component({
-  selector: 'app-condominio-list',
-  templateUrl: './condominio-list.component.html',
-  styleUrls: ['./condominio-list.component.css']
+  selector: 'app-morador-list',
+  templateUrl: './morador-list.component.html',
+  styleUrls: ['./morador-list.component.css']
 })
-export class CondominioListComponent implements OnInit {
+export class MoradorListComponent implements OnInit {
 
-  condominios!: Condominio[];
-  condominio!: Condominio;
+  moradores!: Morador[];
+  morador!: Morador;
   totalRecords: number = 0;
   filters: Item[] = [];
-  
+
 //[declaracoes]
 
   constructor(
@@ -24,56 +26,81 @@ export class CondominioListComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private condominioService: CondominioService) { }
+    private moradorService: MoradorService) { }
 
   ngOnInit() {
-    this.condominio = new Condominio();
-    this.condominio.sindico = {pessoa:{}};
-//[ngOnInit]
+    this.morador = new Morador();
+    this.morador.pessoa = new Pessoa();
+	  this.morador.apartamento = new Apartamento();
+	
 //[buscarFK]
     this.activatedRoute.params.subscribe(params => {
       if (params.id) {
-        console.log('id', params.id);
         const id = params.id ? Number(params.id) : null;
-        this.condominio.id = Number(id);
+        this.morador.id = Number(id);
       }
-      if (params.id_sindico) {
-        console.log('id_sindico', params.id_sindico);
-        const idSindico = params.id_sindico ? Number(params.id_sindico) : null;
-        this.condominio.sindico.id = idSindico;
+      if (params.id_pessoa) {
+        const idpessoa = params.id_pessoa ? Number(params.id_pessoa) : null;
+        //this.morador.pessoa.id = idSindico; COLOQUE AQUI A LÓGICA
       }
+      if (params.id_apartamento) {
+        const idapartamento = params.id_apartamento ? Number(params.id_apartamento) : null;
+        this.morador.apartamento.id = Number(idapartamento)
+      }
+    });
+
+  }
+
+
+  buscarMoradorPorPessoa(idPessoa: number) {
+    this.moradorService.buscarPorPessoa(idPessoa).subscribe(resposta => {
+      this.moradores = resposta as Morador[];
+    }, error => {
+      console.log(error);
+      alert('erro Pessoa.' + error);
     });
   }
 
+  buscarMoradorPorApartamento(idApartamento: number) {
+    this.moradorService.buscarPorApartamento(idApartamento).subscribe(resposta => {
+      this.moradores = resposta as Morador[];
+    }, error => {
+      console.log(error);
+      alert('erro Apartamento.' + error);
+    });
+  }
+
+
   consultarPaginado(event: LazyLoadEvent) {
+    console.log(event);
     this.filters = this.formatFilters( event );
-    if(this.condominio.sindico.id){
+    if(this.morador.pessoa.id){
       let it = new Item();
-      it.field = 'sindico.id';
+      it.field = 'pessoa.id';
       it.matchMode = 'equals';
-      it.value = this.condominio.sindico.id;
+      it.value = this.morador.pessoa.id+"";
       this.filters.push(it);
     }
-    if(this.condominio.id){
+    if(this.morador.apartamento.id){
       let it = new Item();
-      it.field = 'id';
+      it.field = 'apartamento.id';
       it.matchMode = 'equals';
-      it.value = this.condominio.id+"";
+      it.value = this.morador.apartamento.id+"";
       this.filters.push(it);
     }
+
     event.globalFilter = this.filters;
     console.log(this.filters);
-    this.condominioService.consultarPaginado(event).subscribe((resposta: any) => {
+    this.moradorService.consultarPaginado(event).subscribe((resposta: any) => {
       console.log(resposta);
-      console.log(resposta.content);
-      this.condominios = resposta.content as Condominio[];
+      this.moradores = resposta.content as Morador[];
       this.totalRecords = resposta.totalElements;
     }, (error : any) => {
       console.log(error);
       alert('erro condominios.' + error);
     });
   }
-
+  
   formatFilters( event: LazyLoadEvent ): Item[] {
     const filterStrings: string[] = [];
     const itens: Item[] = [];
@@ -104,16 +131,17 @@ export class CondominioListComponent implements OnInit {
       .replace(/([a-z])([A-Z])/g, (a, b, c) => `${b} ${c}`
   ) }
   
+
   consultar() {
-    this.condominioService.consultar().subscribe((resposta: Condominio[]) => {
-      this.condominios = resposta as Condominio[];
+    this.moradorService.consultar().subscribe((resposta: Morador[]) => {
+      this.moradores = resposta as Morador[];
     }, (error: string) => {
       console.log(error);
-      alert('erro condominios.' + error);
+      alert('erro moradores.' + error);
     });
   }
 
-  onSubmit(condominioForm: any) {
+  onSubmit(moradorForm: any) {
 
   }
 

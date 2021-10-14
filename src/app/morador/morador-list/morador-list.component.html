@@ -1,0 +1,29 @@
+<p-table [value]="moradores" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,15,20,50,100]" [lazy]="true" (onLazyLoad)="consultarPaginado($event)" responsiveLayout="scroll" [totalRecords]="totalRecords" sortMode="multiple" [showCurrentPageReport]="true" currentPageReportTemplate="Exibindo {first} até {last} de {totalRecords} registros.">
+    <ng-template pTemplate="header">
+     <tr>
+      <th pSortableColumn="id">Id
+        <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
+       <p-sortIcon field="id"></p-sortIcon></th>
+      <th pSortableColumn="pessoa">Pessoa
+        <p-columnFilter type="text" field="pessoa.id" display="menu"></p-columnFilter>
+       <p-sortIcon field="pessoa"></p-sortIcon></th>
+      <th pSortableColumn="proprietario">Proprietario
+        <p-columnFilter type="text" field="pessoa.id" display="menu"></p-columnFilter>
+       <p-sortIcon field="proprietario"></p-sortIcon></th>
+      <th pSortableColumn="apartamento">Apartamento
+        <p-columnFilter type="text" field="apartamento.id" display="menu"></p-columnFilter>
+       <p-sortIcon field="apartamento"></p-sortIcon></th>
+      <th>&nbsp;</th>
+     </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-morador>
+     <tr>
+      <td class="horizontal-compact" style="text-align: right;">{{morador.id}}</td>
+      <td class="horizontal-compact"><a [routerLink]="['/pessoa/', morador.pessoa.id]">{{morador.pessoa.nome}}</a></td>
+      <td class="horizontal-compact" style="text-align: center;">{{morador.proprietario?'Sim':'Não' }}</td>
+      <td class="horizontal-compact"><a [routerLink]="['/apartamento/', morador.apartamento.id]">{{morador.apartamento.numero}}</a></td>
+      <td><button pButton icon="pi pi-pencil" [routerLink]="['/morador/morador-add/', morador.id]" title="Selecionar Morador"></button></td>
+     </tr>
+    </ng-template>
+   </p-table>
+   
