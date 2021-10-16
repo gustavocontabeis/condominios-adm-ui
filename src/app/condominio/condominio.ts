@@ -1,3 +1,6 @@
+import { Bloco } from "../bloco/bloco";
+import { Faturamento } from "../faturamento/faturamento";
+
 export class Condominio {
     id!: number;
     nome!: string;
@@ -6,6 +9,6 @@ export class Condominio {
     bairro!: string | undefined;
     cidade!: string;
     sindico: any;
-    blocos!: any[];
-    faturamentos!: any[];
+    blocos!: Bloco[];
+    faturamentos!: Faturamento[];
 }

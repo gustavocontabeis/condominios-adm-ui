@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'morador', loadChildren: () => import('./morador/morador.module').then(m => m.MoradorModule)},
   { path: 'faturamento', loadChildren: () => import('./faturamento/faturamento.module').then(m => m.FaturamentoModule)},
   { path: 'boleto', loadChildren: () => import('./boleto/boleto.module').then(m => m.BoletoModule)},
+  { path: 'centro-de-custo', loadChildren: () => import('./centro-de-custo/centro-de-custo.module').then(m => m.CentroDeCustoModule)},
   { path: '', component: HomeComponent },
 ];
 

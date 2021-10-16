@@ -5,6 +5,7 @@ import { Apartamento } from '../apartamento';
 import { MessageService, ConfirmationService, SelectItem, LazyLoadEvent } from 'primeng/api';
 import { Item } from 'src/app/models/dto/item';
 import { Bloco } from 'src/app/bloco/bloco';
+import { Pessoa } from 'src/app/pessoa/pessoa';
 
 @Component({
   selector: 'app-apartamento-list',
@@ -30,8 +31,8 @@ export class ApartamentoListComponent implements OnInit {
   ngOnInit() {
     this.apartamento = new Apartamento();
 	  this.apartamento.bloco = new Bloco();
-	  this.apartamento.proprietario = {};
-	  this.apartamento.titular = {};
+	  this.apartamento.proprietario = new Pessoa();
+	  this.apartamento.titular = new Pessoa();
 	
 //[buscarFK]
     this.activatedRoute.params.subscribe(params => {
@@ -88,21 +89,21 @@ export class ApartamentoListComponent implements OnInit {
       let it = new Item();
       it.field = 'bloco.id';
       it.matchMode = 'equals';
-      it.value = this.apartamento.bloco.id+"";
+      it.value = String(this.apartamento.bloco.id);
       this.filters.push(it);
     }
     if(this.apartamento.proprietario.id){
       let it = new Item();
       it.field = 'proprietario.id';
       it.matchMode = 'equals';
-      it.value = this.apartamento.proprietario.id;
+      it.value = String(this.apartamento.proprietario.id);
       this.filters.push(it);
     }
     if(this.apartamento.titular.id){
       let it = new Item();
       it.field = 'titular.id';
       it.matchMode = 'equals';
-      it.value = this.apartamento.titular.id;
+      it.value = String(this.apartamento.titular.id);
       this.filters.push(it);
     }
 

@@ -1,3 +1,4 @@
+import { Apartamento } from "../apartamento/apartamento";
 import { Condominio } from "../condominio/condominio";
 
 export class Bloco {
@@ -5,5 +6,5 @@ export class Bloco {
 	nome!: string;
 	tipo!: string;
 	condominio!: Condominio;
-	apartamentos!: any[];
+	apartamentos!: Apartamento[];
 }

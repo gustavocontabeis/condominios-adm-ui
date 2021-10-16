@@ -1,3 +1,7 @@
 export class Pessoa {
-    id!:number;
+	id!: number;
+	nome!: string;
+	cpf!: string;
+	genero!: string;
+	nascimento!: string;
 }

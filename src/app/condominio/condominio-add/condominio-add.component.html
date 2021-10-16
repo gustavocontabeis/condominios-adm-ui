@@ -1,1 +1,74 @@
-<p>condominio-add works!</p>
+<p-panel header="Title">
+  <form #condominioForm="ngForm" (ngSubmit)="onSubmit(condominioForm)">
+    <div class="ui-g ui-fluid" *ngIf="condominio">
+      <div class="ui-g-12">
+        <div class="ui-g-4 label">
+          <label id="label-id" for="id">Id</label>
+        </div>
+        <div class="ui-g-8 input">
+          <input id="id" name="id" #id="ngModel" pInputText pKeyFilter="int" placeholder="Id"
+            [(ngModel)]="condominio.id" [required]="true" pattern="^\d+$">
+        </div>
+      </div>
+      <div class="ui-g-12">
+        <div class="ui-g-4 label">
+          <label id="label-nome" for="nome">Nome</label>
+        </div>
+        <div class="ui-g-8 input">
+          <input id="nome" name="nome" #nome="ngModel" pInputText placeholder="Nome" [(ngModel)]="condominio.nome"
+            [required]="true">
+        </div>
+      </div>
+      <div class="ui-g-12">
+        <div class="ui-g-4 label">
+          <label id="label-logradouro" for="logradouro">Logradouro</label>
+        </div>
+        <div class="ui-g-8 input">
+          <input id="logradouro" name="logradouro" #logradouro="ngModel" pInputText placeholder="Logradouro"
+            [(ngModel)]="condominio.logradouro" [required]="true">
+        </div>
+      </div>
+      <div class="ui-g-12">
+        <div class="ui-g-4 label">
+          <label id="label-numero" for="numero">Numero</label>
+        </div>
+        <div class="ui-g-8 input">
+          <input id="numero" name="numero" #numero="ngModel" pInputText placeholder="Numero"
+            [(ngModel)]="condominio.numero" [required]="true">
+        </div>
+      </div>
+      <div class="ui-g-12">
+        <div class="ui-g-4 label">
+          <label id="label-bairro" for="bairro">Bairro</label>
+        </div>
+        <div class="ui-g-8 input">
+          <input id="bairro" name="bairro" #bairro="ngModel" pInputText placeholder="Bairro"
+            [(ngModel)]="condominio.bairro" [required]="true">
+        </div>
+      </div>
+      <div class="ui-g-12">
+        <div class="ui-g-4 label">
+          <label id="label-cidade" for="cidade">Cidade</label>
+        </div>
+        <div class="ui-g-8 input">
+          <input id="cidade" name="cidade" #cidade="ngModel" pInputText placeholder="Cidade"
+            [(ngModel)]="condominio.cidade" [required]="true">
+        </div>
+      </div>
+      <div class="ui-g-12">
+        <div class="ui-g-4 label">
+          <label id="label-sindico" for="sindico">Sindico</label>
+        </div>
+        <div class="ui-g-8 input">
+          <p-dropdown id="sindico" name="sindico" #sindico="ngModel" [options]="sindicos"
+            [(ngModel)]="condominio.sindico" [required]="true"></p-dropdown>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="ui-dialog-buttonpane ui-helper-clearfix">
+    <button pButton icon="pi pi-check" (click)="salvar()" label="Salvar" [disabled]="!condominioForm.valid"></button>
+    <button pButton icon="pi pi-times" (click)="confirmarExcluir()" label="Excluir" class="ui-button-secondary"
+      *ngIf="condominio.id"></button>
+  </div>
+</p-panel>

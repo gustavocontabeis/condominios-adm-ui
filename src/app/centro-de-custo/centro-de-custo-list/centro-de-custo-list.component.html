@@ -1,0 +1,22 @@
+<p-table [value]="centroDeCustos" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,15,20,50,100]" [lazy]="true" (onLazyLoad)="consultarPaginado($event)" responsiveLayout="scroll" [totalRecords]="totalRecords" sortMode="multiple" [showCurrentPageReport]="true" currentPageReportTemplate="Exibindo {first} até {last} de {totalRecords} registros.">
+    <ng-template pTemplate="header">
+     <tr>
+      <th pSortableColumn="id">Id
+       <p-sortIcon field="id"></p-sortIcon>
+       <p-columnFilter type="text" field="id" display="menu"></p-columnFilter></th>
+      <th pSortableColumn="nome">Nome
+       <p-sortIcon field="nome"></p-sortIcon>
+       <p-columnFilter type="text" field="nome" display="menu"></p-columnFilter></th>
+      <th>&nbsp;</th>
+     </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-centroDeCusto>
+     <tr>
+      <td class="horizontal-compact" style="text-align: right;">{{centroDeCusto.id}}</td>
+      <td class="horizontal-compact">{{centroDeCusto.nome}}</td>
+      <td>
+          <button pButton icon="pi pi-pencil" [routerLink]="['/centro-de-custo/centro-de-custo-add/', centroDeCusto.id]" title="Selecionar Centro de custo"></button>
+      </td>
+     </tr>
+    </ng-template>
+   </p-table>

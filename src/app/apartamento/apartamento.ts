@@ -1,10 +1,12 @@
 import { Bloco } from "../bloco/bloco";
+import { Morador } from "../morador/morador";
+import { Pessoa } from "../pessoa/pessoa";
 
 export class Apartamento {
 	id!: number;
 	numero!: string;
-	moradores!: any[];
+	moradores!: Morador[];
 	bloco!: Bloco;
-	proprietario!: any;
-	titular!: any;
+	proprietario!: Pessoa;
+	titular!: Pessoa;
 }
