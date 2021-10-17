@@ -5,13 +5,13 @@ import { CondominioFilterComponent } from './condominio-filter/condominio-filter
 import { CondominioListComponent } from './condominio-list/condominio-list.component';
 
 const routes: Routes = [
-  { path: '', component: CondominioListComponent },
-  { path: ':id', component: CondominioListComponent },
+  { path: '', component: CondominioFilterComponent },
   { path: 'condominio-add', component: CondominioAddComponent },
   { path: 'condominio-add/:id', component: CondominioAddComponent },
-  { path: 'condominio-filter', component: CondominioFilterComponent },
   { path: 'condominio-list', component: CondominioListComponent },
+  { path: 'condominio-filter', component: CondominioFilterComponent },
   { path: 'sindico/:id_sindico', component: CondominioListComponent },
+  { path: ':id', component: CondominioListComponent },
 ];
 
 @NgModule({

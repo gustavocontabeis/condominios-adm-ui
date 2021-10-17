@@ -27,13 +27,14 @@ export class CondominioListComponent implements OnInit {
     private condominioService: CondominioService) { }
 
   ngOnInit() {
+    console.log('>>>>>>>>>>>>>> list');
     this.condominio = new Condominio();
     this.condominio.sindico = {pessoa:{}};
 //[ngOnInit]
 //[buscarFK]
     this.activatedRoute.params.subscribe(params => {
       if (params.id) {
-        console.log('id', params.id);
+        console.log('idx', params.id);
         const id = params.id ? Number(params.id) : null;
         this.condominio.id = Number(id);
       }

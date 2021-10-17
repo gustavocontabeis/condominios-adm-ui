@@ -8,6 +8,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
 import { CondominioService } from './condominio.service';
@@ -26,7 +27,7 @@ import { CondominioListComponent } from './condominio-list/condominio-list.compo
   ],
   imports: [
     CommonModule, FormsModule,
-    ToastModule, PanelModule, TableModule, ButtonModule, DropdownModule, InputTextModule,
+    ToastModule, PanelModule, TableModule, ButtonModule, DropdownModule, InputTextModule, ConfirmDialogModule,
     CondominioRoutingModule,
   ],
   providers: [MessageService, ConfirmationService, CondominioService]

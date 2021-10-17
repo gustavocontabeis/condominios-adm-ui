@@ -28,7 +28,6 @@ export class CondominioAddComponent implements OnInit {
   blocos: SelectItem[] = [];
   faturamentos: SelectItem[] = [];
 
-
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -40,6 +39,7 @@ export class CondominioAddComponent implements OnInit {
     private faturamentosService: FaturamentoService) { }
 
   ngOnInit() {
+    console.log('>>>>>>>>>>>>>> add');
     this.exibirDialog = false;
     this.novoRegistro = false;
     this.condominio = new Condominio();

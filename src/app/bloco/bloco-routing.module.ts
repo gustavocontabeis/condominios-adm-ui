@@ -4,11 +4,11 @@ import { BlocoAddComponent } from './bloco-add/bloco-add.component';
 import { BlocoListComponent } from './bloco-list/bloco-list.component';
 
 const routes: Routes = [
-  { path: ':id', component: BlocoListComponent },
   { path: 'bloco-add', component: BlocoAddComponent },
   { path: 'bloco-add/:id', component: BlocoAddComponent },
   { path: 'bloco-list', component: BlocoListComponent },
   { path: 'condominio/:id_condominio', component: BlocoListComponent },
+  { path: ':id', component: BlocoListComponent },
 ];
 
 @NgModule({

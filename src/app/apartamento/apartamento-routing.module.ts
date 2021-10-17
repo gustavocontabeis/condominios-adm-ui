@@ -4,13 +4,13 @@ import { ApartamentoAddComponent } from './apartamento-add/apartamento-add.compo
 import { ApartamentoListComponent } from './apartamento-list/apartamento-list.component';
 
 const routes: Routes = [
-  { path: ':id', component: ApartamentoListComponent },
   { path: 'apartamento-add', component: ApartamentoAddComponent },
   { path: 'apartamento-add/:id', component: ApartamentoAddComponent },
   { path: 'apartamento-list', component: ApartamentoListComponent },
   { path: 'bloco/:id_bloco', component: ApartamentoListComponent },
   { path: 'proprietario/:id_proprietario', component: ApartamentoListComponent },
   { path: 'titular/:id_titular', component: ApartamentoListComponent },
+  { path: ':id', component: ApartamentoListComponent },
 ];
 
 @NgModule({
