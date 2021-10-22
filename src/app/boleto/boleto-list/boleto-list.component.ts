@@ -54,9 +54,7 @@ export class BoletoListComponent implements OnInit {
         this.boleto.titular.id = Number(idTitular);
       }
     });
-
   }
-
 
   buscarBoletoPorApartamento(idApartamento: number) {
     this.boletoService.buscarPorApartamento(idApartamento).subscribe(resposta => {
@@ -87,7 +85,6 @@ export class BoletoListComponent implements OnInit {
 
 
   consultarPaginado(event: LazyLoadEvent) {
-    console.log(event);
     this.filters = this.formatFilters( event );
     if(this.boleto.apartamento.id){
       let it = new Item();
@@ -112,9 +109,7 @@ export class BoletoListComponent implements OnInit {
     }
 
     event.globalFilter = this.filters;
-    console.log(this.filters);
     this.boletoService.consultarPaginado(event).subscribe((resposta: any) => {
-      console.log(resposta);
       this.boletos = resposta.content as Boleto[];
       this.totalRecords = resposta.totalElements;
     }, (error : any) => {
@@ -143,7 +138,6 @@ export class BoletoListComponent implements OnInit {
         }
       }
     }
-    console.warn( filterStrings );
     return itens;
   }
   /*

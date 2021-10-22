@@ -2,7 +2,7 @@
   <div class="p-fluid" *ngIf="condominio">
    <div class="p-field">
     <label id="label-id" for="id">Id</label>
-    <input id="id" name="id" #id="ngModel" pInputText pKeyFilter="int" placeholder="Id" [(ngModel)]="condominio.id" [required]="true" pattern="^\d+$">
+    <input id="id" name="id" #id="ngModel" pInputText pKeyFilter="int" placeholder="Id" [(ngModel)]="condominio.id" [required]="false" pattern="^\d+$">
    </div>
    <div class="p-field">
     <label id="label-nome" for="nome">Nome</label>

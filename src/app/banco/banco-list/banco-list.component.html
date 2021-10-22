@@ -1,0 +1,37 @@
+<p-table [value]="bancos" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,15,20,50,100]" [lazy]="true" (onLazyLoad)="consultarPaginado($event)" responsiveLayout="scroll" [totalRecords]="totalRecords" sortMode="multiple" [showCurrentPageReport]="true" currentPageReportTemplate="Exibindo {first} até {last} de {totalRecords} registros.">
+    <ng-template pTemplate="header">
+     <tr>
+      <th pSortableColumn="id">Id
+       <p-sortIcon field="id"></p-sortIcon>
+       <p-columnFilter type="text" field="id" display="menu"></p-columnFilter></th>
+      <th pSortableColumn="condominio">Condominio
+       <p-sortIcon field="condominio"></p-sortIcon>
+       <p-columnFilter type="text" field="condominio" display="menu"></p-columnFilter></th>
+      <th pSortableColumn="numero">Numero
+       <p-sortIcon field="numero"></p-sortIcon>
+       <p-columnFilter type="text" field="numero" display="menu"></p-columnFilter></th>
+      <th pSortableColumn="agencia">Agencia
+       <p-sortIcon field="agencia"></p-sortIcon>
+       <p-columnFilter type="text" field="agencia" display="menu"></p-columnFilter></th>
+      <th pSortableColumn="conta">Conta
+       <p-sortIcon field="conta"></p-sortIcon>
+       <p-columnFilter type="text" field="conta" display="menu"></p-columnFilter></th>
+      <th pSortableColumn="tipo">Tipo
+       <p-sortIcon field="tipo"></p-sortIcon>
+       <p-columnFilter type="text" field="tipo" display="menu"></p-columnFilter></th>
+      <th>&nbsp;</th>
+     </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-banco>
+     <tr>
+      <td class="horizontal-compact" style="text-align: right;">{{banco.id}}</td>
+      <td class="horizontal-compact"><a [routerLink]="['/condominio/', banco.condominio.id]">{{banco.condominio.nome}}</a></td>
+      <td class="horizontal-compact" style="text-align: right;">{{banco.numero}}</td>
+      <td class="horizontal-compact">{{banco.agencia}}</td>
+      <td class="horizontal-compact">{{banco.conta}}</td>
+      <td class="horizontal-compact">{{banco.tipo}}</td>
+      <td><button pButton icon="pi pi-pencil" [routerLink]="['/banco/banco-add/', banco.id]" title="Selecionar Banco"></button><button pButton icon="pi pi-list" [routerLink]="['/banco-lancamento/banco/', banco.id]" title="Selecionar Lancamentos"></button></td>
+     </tr>
+    </ng-template>
+   </p-table>
+   

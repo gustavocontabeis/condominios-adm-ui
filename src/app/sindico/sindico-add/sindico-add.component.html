@@ -1,1 +1,31 @@
-<p>sindico-add works!</p>
+<form #sindicoForm="ngForm" (ngSubmit)="onSubmit(sindicoForm)">
+    <div class="p-fluid" *ngIf="sindico">
+     <div class="p-field">
+      <label id="label-id" for="id">Id</label>
+      <input id="id" name="id" #id="ngModel" pInputText pKeyFilter="int" placeholder="Id" [(ngModel)]="sindico.id" [required]="true" pattern="^\d+$">
+     </div>
+     <div class="p-field">
+      <label id="label-pessoa" for="pessoa">Pessoa</label>
+      <p-dropdown id="pessoa" name="pessoa" #pessoa="ngModel" [options]="pessoas" [(ngModel)]="sindico.pessoa" [required]="true"></p-dropdown>
+     </div>
+     <div class="p-field">
+      <label id="label-de" for="de">De</label>
+      <input id="de" name="de" #de="ngModel" pInputText placeholder="De" [(ngModel)]="sindico.de" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-ate" for="ate">Ate</label>
+      <input id="ate" name="ate" #ate="ngModel" pInputText placeholder="Ate" [(ngModel)]="sindico.ate" [required]="false">
+     </div>
+    </div>
+   </form>
+   <div class="ui-dialog-buttonpane ui-helper-clearfix">
+    <button pButton icon="pi pi-check" (click)="salvar()" label="Salvar" style="margin-right: 2px;" [disabled]="!sindicoForm.valid"></button>
+    <button pButton icon="pi pi-times" (click)="confirmarExcluir()" label="Excluir" class="ui-button-secondary" style="margin-right: 2px;" *ngIf="sindico.id"></button>
+   </div>
+   <p-confirmDialog #confirmacaoDialog header="Confirmação" icon="pi pi-exclamation-triangle">
+    <p-footer>
+     <button type="button" pButton icon="pi pi-times" label="Não" (click)="confirmacaoDialog.reject()"></button>
+     <button type="button" pButton icon="pi pi-check" label="Sim" (click)="confirmacaoDialog.accept()"></button>
+    </p-footer>
+   </p-confirmDialog>
+   

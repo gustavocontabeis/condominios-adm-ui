@@ -13,12 +13,15 @@ import { ApartamentoService } from './apartamento.service';
 import { ApartamentoRoutingModule } from './apartamento-routing.module';
 import { ApartamentoAddComponent } from './apartamento-add/apartamento-add.component';
 import { ApartamentoListComponent } from './apartamento-list/apartamento-list.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [ApartamentoAddComponent, ApartamentoListComponent],
   imports: [
     CommonModule, FormsModule,
-    ToastModule, PanelModule, TableModule, ButtonModule,
+    ToastModule, PanelModule, TableModule, ButtonModule, DropdownModule, InputTextModule, ConfirmDialogModule,
     ApartamentoRoutingModule,
   ],
   providers: [MessageService, ConfirmationService, ApartamentoService]

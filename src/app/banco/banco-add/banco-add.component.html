@@ -1,0 +1,39 @@
+<form #bancoForm="ngForm" (ngSubmit)="onSubmit(bancoForm)">
+    <div class="p-fluid" *ngIf="banco">
+     <div class="p-field">
+      <label id="label-id" for="id">Id</label>
+      <input id="id" name="id" #id="ngModel" pInputText pKeyFilter="int" placeholder="Id" [(ngModel)]="banco.id" [required]="false" pattern="^\d+$">
+     </div>
+     <div class="p-field">
+      <label id="label-condominio" for="condominio">Condominio</label>
+      <p-dropdown id="condominio" name="condominio" #condominio="ngModel" [options]="condominios" [(ngModel)]="banco.condominio" [required]="true"></p-dropdown>
+     </div>
+     <div class="p-field">
+      <label id="label-numero" for="numero">Numero</label>
+      <input id="numero" name="numero" #numero="ngModel" pInputText pKeyFilter="int" placeholder="Numero" [(ngModel)]="banco.numero" [required]="false" pattern="^\d+$">
+     </div>
+     <div class="p-field">
+      <label id="label-agencia" for="agencia">Agencia</label>
+      <input id="agencia" name="agencia" #agencia="ngModel" pInputText placeholder="Agencia" [(ngModel)]="banco.agencia" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-conta" for="conta">Conta</label>
+      <input id="conta" name="conta" #conta="ngModel" pInputText placeholder="Conta" [(ngModel)]="banco.conta" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-tipo" for="tipo">Tipo</label>
+      <p-dropdown id="tipo" name="tipo" #tipo="ngModel" [options]="tipos" [(ngModel)]="banco.tipo" [required]="true"></p-dropdown>
+     </div>
+    </div>
+   </form>
+   <div class="ui-dialog-buttonpane ui-helper-clearfix">
+    <button pButton icon="pi pi-check" (click)="salvar()" label="Salvar" style="margin-right: 2px;" [disabled]="!bancoForm.valid"></button>
+    <button pButton icon="pi pi-times" (click)="confirmarExcluir()" label="Excluir" class="ui-button-secondary" style="margin-right: 2px;" *ngIf="banco.id"></button>
+   </div>
+   <p-confirmDialog #confirmacaoDialog header="Confirmação" icon="pi pi-exclamation-triangle">
+    <p-footer>
+     <button type="button" pButton icon="pi pi-times" label="Não" (click)="confirmacaoDialog.reject()"></button>
+     <button type="button" pButton icon="pi pi-check" label="Sim" (click)="confirmacaoDialog.accept()"></button>
+    </p-footer>
+   </p-confirmDialog>
+   

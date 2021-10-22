@@ -6,6 +6,9 @@ import { PanelModule } from 'primeng/panel';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
 import { CentroDeCustoAddComponent } from './centro-de-custo-add/centro-de-custo-add.component';
@@ -13,12 +16,11 @@ import { CentroDeCustoListComponent } from './centro-de-custo-list/centro-de-cus
 import { CentroDeCustoRoutingModule } from './centro-de-custo-routing.module';
 import { CentroDeCustoService } from './centro-de-custo.service';
 
-
 @NgModule({
   declarations: [CentroDeCustoAddComponent, CentroDeCustoListComponent],
   imports: [
     CommonModule, FormsModule,
-    ToastModule, PanelModule, TableModule, ButtonModule,
+    ToastModule, PanelModule, TableModule, ButtonModule, DropdownModule, InputTextModule, ConfirmDialogModule,
     CentroDeCustoRoutingModule,
   ],
   providers: [MessageService, ConfirmationService, CentroDeCustoService]

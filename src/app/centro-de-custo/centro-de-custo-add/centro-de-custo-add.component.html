@@ -1,25 +1,23 @@
 <form #centroDeCustoForm="ngForm" (ngSubmit)="onSubmit(centroDeCustoForm)">
-    <div class="ui-g ui-fluid" *ngIf="centroDeCusto">
-     <div class="ui-g-12">
-      <div class="ui-g-4 label">
-       <label id="label-id" for="id">Id</label>
-      </div>
-      <div class="ui-g-8 input">
-       <input id="id" name="id" #id="ngModel" pKeyFilter="int" placeholder="Id" [(ngModel)]="centroDeCusto.id" [required]="true" pattern="^\d+$">
-      </div>
+    <div class="p-fluid" *ngIf="centroDeCusto">
+     <div class="p-field">
+      <label id="label-id" for="id">Id</label>
+      <input id="id" name="id" #id="ngModel" pInputText pKeyFilter="int" placeholder="Id" [(ngModel)]="centroDeCusto.id" [required]="false" pattern="^\d+$">
      </div>
-     <div class="ui-g-12">
-      <div class="ui-g-4 label">
-       <label id="label-nome" for="nome">Nome</label>
-      </div>
-      <div class="ui-g-8 input">
-       <input id="nome" name="nome" #nome="ngModel" pInputText placeholder="Nome" [(ngModel)]="centroDeCusto.nome" [required]="true">
-      </div>
+     <div class="p-field">
+      <label id="label-nome" for="nome">Nome</label>
+      <input id="nome" name="nome" #nome="ngModel" pInputText placeholder="Nome" [(ngModel)]="centroDeCusto.nome" [required]="true">
      </div>
     </div>
    </form>
    <div class="ui-dialog-buttonpane ui-helper-clearfix">
-    <button pButton icon="pi pi-check" (click)="salvar()" label="Salvar" [disabled]="!centroDeCustoForm.valid"></button>
-    <button pButton icon="pi pi-times" (click)="confirmarExcluir()" label="Excluir" class="ui-button-secondary" *ngIf="centroDeCusto.id"></button>
+    <button pButton icon="pi pi-check" (click)="salvar()" label="Salvar" style="margin-right: 2px;" [disabled]="!centroDeCustoForm.valid"></button>
+    <button pButton icon="pi pi-times" (click)="confirmarExcluir()" label="Excluir" class="ui-button-secondary" style="margin-right: 2px;" *ngIf="centroDeCusto.id"></button>
    </div>
- 
+   <p-confirmDialog #confirmacaoDialog header="Confirmação" icon="pi pi-exclamation-triangle">
+    <p-footer>
+     <button type="button" pButton icon="pi pi-times" label="Não" (click)="confirmacaoDialog.reject()"></button>
+     <button type="button" pButton icon="pi pi-check" label="Sim" (click)="confirmacaoDialog.accept()"></button>
+    </p-footer>
+   </p-confirmDialog>
+   

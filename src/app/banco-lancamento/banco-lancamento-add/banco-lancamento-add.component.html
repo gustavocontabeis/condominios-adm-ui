@@ -1,0 +1,47 @@
+<form #bancoLancamentoForm="ngForm" (ngSubmit)="onSubmit(bancoLancamentoForm)">
+    <div class="p-fluid" *ngIf="bancoLancamento">
+     <div class="p-field">
+      <label id="label-id" for="id">Id</label>
+      <input id="id" name="id" #id="ngModel" pInputText pKeyFilter="int" placeholder="Id" [(ngModel)]="bancoLancamento.id" [required]="false" pattern="^\d+$">
+     </div>
+     <div class="p-field">
+      <label id="label-banco" for="banco">Banco</label>
+      <p-dropdown id="banco" name="banco" #banco="ngModel" [options]="bancos" [(ngModel)]="bancoLancamento.banco" [required]="true"></p-dropdown>
+     </div>
+     <div class="p-field">
+      <label id="label-data" for="data">Data</label>
+      <input id="data" name="data" #data="ngModel" pInputText placeholder="Data" [(ngModel)]="bancoLancamento.data" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-centroDeCusto" for="centroDeCusto">Centro de custo</label>
+      <p-dropdown id="centroDeCusto" name="centroDeCusto" #centroDeCusto="ngModel" [options]="centroDeCustos" [(ngModel)]="bancoLancamento.centroDeCusto" [required]="true"></p-dropdown>
+     </div>
+     <div class="p-field">
+      <label id="label-documento" for="documento">Documento</label>
+      <input id="documento" name="documento" #documento="ngModel" pInputText placeholder="Documento" [(ngModel)]="bancoLancamento.documento" [required]="false">
+     </div>
+     <div class="p-field">
+      <label id="label-historico" for="historico">Historico</label>
+      <input id="historico" name="historico" #historico="ngModel" pInputText placeholder="Historico" [(ngModel)]="bancoLancamento.historico" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-valor" for="valor">Valor</label>
+      <input id="valor" name="valor" #valor="ngModel" pInputText placeholder="Valor" [(ngModel)]="bancoLancamento.valor" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-saldo" for="saldo">Saldo</label>
+      <input id="saldo" name="saldo" #saldo="ngModel" pInputText placeholder="Saldo" [(ngModel)]="bancoLancamento.saldo" [required]="true">
+     </div>
+    </div>
+   </form>
+   <div class="ui-dialog-buttonpane ui-helper-clearfix">
+    <button pButton icon="pi pi-check" (click)="salvar()" label="Salvar" style="margin-right: 2px;" [disabled]="!bancoLancamentoForm.valid"></button>
+    <button pButton icon="pi pi-times" (click)="confirmarExcluir()" label="Excluir" class="ui-button-secondary" style="margin-right: 2px;" *ngIf="bancoLancamento.id"></button>
+   </div>
+   <p-confirmDialog #confirmacaoDialog header="Confirmação" icon="pi pi-exclamation-triangle">
+    <p-footer>
+     <button type="button" pButton icon="pi pi-times" label="Não" (click)="confirmacaoDialog.reject()"></button>
+     <button type="button" pButton icon="pi pi-check" label="Sim" (click)="confirmacaoDialog.accept()"></button>
+    </p-footer>
+   </p-confirmDialog>
+   

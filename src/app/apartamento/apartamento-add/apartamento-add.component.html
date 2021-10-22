@@ -1,1 +1,35 @@
-<p>apartamento-add works!</p>
+<form #apartamentoForm="ngForm" (ngSubmit)="onSubmit(apartamentoForm)">
+    <div class="p-fluid" *ngIf="apartamento">
+     <div class="p-field">
+      <label id="label-id" for="id">Id</label>
+      <input id="id" name="id" #id="ngModel" pInputText pKeyFilter="int" placeholder="Id" [(ngModel)]="apartamento.id" [required]="false" pattern="^\d+$">
+     </div>
+     <div class="p-field">
+      <label id="label-numero" for="numero">Numero</label>
+      <input id="numero" name="numero" #numero="ngModel" pInputText placeholder="Numero" [(ngModel)]="apartamento.numero" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-bloco" for="bloco">Bloco</label>
+      <p-dropdown id="bloco" name="bloco" #bloco="ngModel" [options]="blocos" [(ngModel)]="apartamento.bloco" [required]="true"></p-dropdown>
+     </div>
+     <div class="p-field">
+      <label id="label-proprietario" for="proprietario">Proprietario</label>
+      <p-dropdown id="proprietario" name="proprietario" #proprietario="ngModel" [options]="proprietarios" [(ngModel)]="apartamento.proprietario" [required]="true"></p-dropdown>
+     </div>
+     <div class="p-field">
+      <label id="label-titular" for="titular">Titular</label>
+      <p-dropdown id="titular" name="titular" #titular="ngModel" [options]="titulares" [(ngModel)]="apartamento.titular" [required]="true"></p-dropdown>
+     </div>
+    </div>
+   </form>
+   <div class="ui-dialog-buttonpane ui-helper-clearfix">
+    <button pButton icon="pi pi-check" (click)="salvar()" label="Salvar" style="margin-right: 2px;" [disabled]="!apartamentoForm.valid"></button>
+    <button pButton icon="pi pi-times" (click)="confirmarExcluir()" label="Excluir" class="ui-button-secondary" style="margin-right: 2px;" *ngIf="apartamento.id"></button>
+   </div>
+   <p-confirmDialog #confirmacaoDialog header="Confirmação" icon="pi pi-exclamation-triangle">
+    <p-footer>
+     <button type="button" pButton icon="pi pi-times" label="Não" (click)="confirmacaoDialog.reject()"></button>
+     <button type="button" pButton icon="pi pi-check" label="Sim" (click)="confirmacaoDialog.accept()"></button>
+    </p-footer>
+   </p-confirmDialog>
+   

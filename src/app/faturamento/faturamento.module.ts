@@ -6,6 +6,9 @@ import { PanelModule } from 'primeng/panel';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
 import { FaturamentoService } from './faturamento.service';
@@ -18,7 +21,7 @@ import { FaturamentoListComponent } from './faturamento-list/faturamento-list.co
   declarations: [FaturamentoAddComponent, FaturamentoListComponent],
   imports: [
     CommonModule, FormsModule,
-    ToastModule, PanelModule, TableModule, ButtonModule,
+    ToastModule, PanelModule, TableModule, ButtonModule, DropdownModule, InputTextModule, ConfirmDialogModule,
     FaturamentoRoutingModule,
   ],
   providers: [MessageService, ConfirmationService, FaturamentoService]

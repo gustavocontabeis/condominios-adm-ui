@@ -1,1 +1,31 @@
-<p>bloco-add works!</p>
+<form #blocoForm="ngForm" (ngSubmit)="onSubmit(blocoForm)">
+    <div class="p-fluid" *ngIf="bloco">
+     <div class="p-field">
+      <label id="label-id" for="id">Id</label>
+      <input id="id" name="id" #id="ngModel" pInputText pKeyFilter="int" placeholder="Id" [(ngModel)]="bloco.id" [required]="false" pattern="^\d+$">
+     </div>
+     <div class="p-field">
+      <label id="label-nome" for="nome">Nome</label>
+      <input id="nome" name="nome" #nome="ngModel" pInputText placeholder="Nome" [(ngModel)]="bloco.nome" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-tipo" for="tipo">Tipo</label>
+      <p-dropdown id="tipo" name="tipo" #tipo="ngModel" [options]="tipos" [(ngModel)]="bloco.tipo" [required]="true"></p-dropdown>
+     </div>
+     <div class="p-field">
+      <label id="label-condominio" for="condominio">Condominio</label>
+      <p-dropdown id="condominio" name="condominio" #condominio="ngModel" [options]="condominios" [(ngModel)]="bloco.condominio" [required]="true"></p-dropdown>
+     </div>
+    </div>
+   </form>
+   <div class="ui-dialog-buttonpane ui-helper-clearfix">
+    <button pButton icon="pi pi-check" (click)="salvar()" label="Salvar" style="margin-right: 2px;" [disabled]="!blocoForm.valid"></button>
+    <button pButton icon="pi pi-times" (click)="confirmarExcluir()" label="Excluir" class="ui-button-secondary" style="margin-right: 2px;" *ngIf="bloco.id"></button>
+   </div>
+   <p-confirmDialog #confirmacaoDialog header="Confirmação" icon="pi pi-exclamation-triangle">
+    <p-footer>
+     <button type="button" pButton icon="pi pi-times" label="Não" (click)="confirmacaoDialog.reject()"></button>
+     <button type="button" pButton icon="pi pi-check" label="Sim" (click)="confirmacaoDialog.accept()"></button>
+    </p-footer>
+   </p-confirmDialog>
+   

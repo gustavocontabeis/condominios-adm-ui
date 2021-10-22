@@ -18,7 +18,10 @@
       <td class="horizontal-compact" style="text-align: right;">{{faturamento.id}}</td>
       <td class="horizontal-compact">{{faturamento.periodo}}</td>
       <td class="horizontal-compact"><a [routerLink]="['/condominio/', faturamento.condominio.id]">{{faturamento.condominio.nome}}</a></td>
-      <td><button pButton icon="pi pi-pencil" [routerLink]="['/faturamento/faturamento-add/', faturamento.id]" title="Selecionar Faturamento"></button><button pButton icon="pi pi-list" [routerLink]="['/boleto/faturamento/', faturamento.id]" title="Selecionar Boletos"></button></td>
+      <td>
+          <button pButton icon="pi pi-pencil" [routerLink]="['/faturamento/faturamento-add/', faturamento.id]" title="Selecionar Faturamento"></button>
+          <button pButton icon="pi pi-list" [routerLink]="['/boleto/faturamento/', faturamento.id]" title="Selecionar Boletos"></button>
+        </td>
      </tr>
     </ng-template>
    </p-table>

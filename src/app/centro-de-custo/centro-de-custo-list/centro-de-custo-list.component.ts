@@ -17,8 +17,6 @@ export class CentroDeCustoListComponent implements OnInit {
   totalRecords: number = 0;
   filters: Item[] = [];
 
-//[declaracoes]
-
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -28,14 +26,13 @@ export class CentroDeCustoListComponent implements OnInit {
 
   ngOnInit() {
     this.centroDeCusto = new CentroDeCusto();
-	    
-//[buscarFK]
+	
     this.activatedRoute.params.subscribe(params => {
       const id = params.id ? Number(params.id) : null;
       console.log(id);
       if (id != null) {
       console.log('contem id: ' + id);
-        //this.buscar(id);
+        //this.buscar(Number(id));
       }
     });
 
@@ -99,4 +96,3 @@ export class CentroDeCustoListComponent implements OnInit {
   }
 
 }
-

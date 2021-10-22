@@ -1,0 +1,59 @@
+<form #caixaForm="ngForm" (ngSubmit)="onSubmit(caixaForm)">
+    <div class="p-fluid" *ngIf="caixa">
+     <div class="p-field">
+      <label id="label-id" for="id">Id</label>
+      <input id="id" name="id" #id="ngModel" pInputText pKeyFilter="int" placeholder="Id" [(ngModel)]="caixa.id" [required]="false" pattern="^\d+$">
+     </div>
+     <div class="p-field">
+      <label id="label-condominio" for="condominio">Condominio</label>
+      <p-dropdown id="condominio" name="condominio" #condominio="ngModel" [options]="condominios" [(ngModel)]="caixa.condominio" [required]="true"></p-dropdown>
+     </div>
+     <div class="p-field">
+      <label id="label-pessoa" for="pessoa">Pessoa</label>
+      <p-dropdown id="pessoa" name="pessoa" #pessoa="ngModel" [options]="pessoas" [(ngModel)]="caixa.pessoa" [required]="true"></p-dropdown>
+     </div>
+     <div class="p-field">
+      <label id="label-data" for="data">Data</label>
+      <input id="data" name="data" #data="ngModel" pInputText placeholder="Data" [(ngModel)]="caixa.data" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-centroDeCusto" for="centroDeCusto">Centro de custo</label>
+      <p-dropdown id="centroDeCusto" name="centroDeCusto" #centroDeCusto="ngModel" [options]="centroDeCustos" [(ngModel)]="caixa.centroDeCusto" [required]="true"></p-dropdown>
+     </div>
+     <div class="p-field">
+      <label id="label-tipoDocumento" for="tipoDocumento">Tipo documento</label>
+      <p-dropdown id="tipoDocumento" name="tipoDocumento" #tipoDocumento="ngModel" [options]="tipoDocumentos" [(ngModel)]="caixa.tipoDocumento" [required]="true"></p-dropdown>
+     </div>
+     <div class="p-field">
+      <label id="label-para" for="para">Para</label>
+      <input id="para" name="para" #para="ngModel" pInputText placeholder="Para" [(ngModel)]="caixa.para" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-cpfCnpj" for="cpfCnpj">Cpf cnpj</label>
+      <input id="cpfCnpj" name="cpfCnpj" #cpfCnpj="ngModel" pInputText placeholder="Cpf cnpj" [(ngModel)]="caixa.cpfCnpj" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-descricao" for="descricao">Descrição</label>
+      <input id="descricao" name="descricao" #descricao="ngModel" pInputText placeholder="Descrição" [(ngModel)]="caixa.descricao" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-valor" for="valor">Valor</label>
+      <input id="valor" name="valor" #valor="ngModel" pInputText placeholder="Valor" [(ngModel)]="caixa.valor" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-saldo" for="saldo">Saldo</label>
+      <input id="saldo" name="saldo" #saldo="ngModel" pInputText placeholder="Saldo" [(ngModel)]="caixa.saldo" [required]="true">
+     </div>
+    </div>
+   </form>
+   <div class="ui-dialog-buttonpane ui-helper-clearfix">
+    <button pButton icon="pi pi-check" (click)="salvar()" label="Salvar" style="margin-right: 2px;" [disabled]="!caixaForm.valid"></button>
+    <button pButton icon="pi pi-times" (click)="confirmarExcluir()" label="Excluir" class="ui-button-secondary" style="margin-right: 2px;" *ngIf="caixa.id"></button>
+   </div>
+   <p-confirmDialog #confirmacaoDialog header="Confirmação" icon="pi pi-exclamation-triangle">
+    <p-footer>
+     <button type="button" pButton icon="pi pi-times" label="Não" (click)="confirmacaoDialog.reject()"></button>
+     <button type="button" pButton icon="pi pi-check" label="Sim" (click)="confirmacaoDialog.accept()"></button>
+    </p-footer>
+   </p-confirmDialog>
+   

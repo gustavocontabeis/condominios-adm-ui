@@ -13,7 +13,7 @@ export class CentroDeCustoService {
   apiUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.apiUrl = environment.apiUrl + '/centros-de-custos';
+    this.apiUrl = environment.apiUrl + '/centro-de-custos';
   }
 
   adicionar(centroDeCusto: CentroDeCusto): any {

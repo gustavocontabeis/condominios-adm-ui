@@ -13,7 +13,7 @@ export class SindicoService {
   apiUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.apiUrl = environment.apiUrl + '/sindicos'; 
+    this.apiUrl = environment.apiUrl + '/sindicos';
   }
 
   adicionar(sindico: Sindico): any {
