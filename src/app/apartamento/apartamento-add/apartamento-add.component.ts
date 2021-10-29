@@ -51,19 +51,17 @@ export class ApartamentoAddComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       if (params.id_bloco) {
         const idbloco = params.id_bloco ? Number(params.id_bloco) : null;
-        this.buscarApartamentoPorBloco(Number(idbloco));
-      } else {
-        this.consultar();
-      }
-      if (params.id_proprietario) {
+        this.buscarblocoPorId(Number(idbloco));
+        //this.buscarApartamentoPorBloco(Number(idbloco));
+      } else  if (params.id_proprietario) {
         const idproprietario = params.id_proprietario ? Number(params.id_proprietario) : null;
         this.buscarApartamentoPorProprietario(Number(idproprietario));
-      } else {
-        this.consultar();
-      }
-      if (params.id_titular) {
+      } else if (params.id_titular) {
         const idtitular = params.id_titular ? Number(params.id_titular) : null;
         this.buscarApartamentoPorTitular(Number(idtitular));
+      } else if (params.id) {
+        const id = params.id ? Number(params.id) : null;
+        this.buscar(Number(id));
       } else {
         this.consultar();
       }
@@ -71,6 +69,16 @@ export class ApartamentoAddComponent implements OnInit {
 
   }
   
+  buscarblocoPorId(id: number){
+    this.blocoService.buscar(id).subscribe((resposta: Bloco) => {
+      this.blocos.push({label: resposta.nome, value: resposta});
+      this.apartamento.bloco = resposta;
+      }, (error: any) => {
+        console.log(error);
+        alert(error.ok);
+      }
+    );
+  }
   buscarBloco(){
     this.blocoService.consultar().subscribe((resposta: any) => {
       const itens = resposta as Bloco[];
@@ -161,7 +169,7 @@ export class ApartamentoAddComponent implements OnInit {
       this.exibirDialog = false;
       this.novoRegistro = false;
       this.messageService.add({severity: 'success', summary: 'OK', detail: 'Registro adicionado com sucesso.'});
-      this.router.navigate(['/apartamento/apartamento-list']);
+      this.router.navigate(['/apartamento/bloco/', this.apartamento.bloco.id]);
       }, (error: any) => {
         console.log(error);
         alert(error.ok);

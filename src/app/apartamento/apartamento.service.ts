@@ -9,7 +9,7 @@ import { LazyLoadEvent } from 'primeng/api';
   providedIn: 'root'
 })
 export class ApartamentoService {
-
+  
   apiUrl: string;
 
   constructor(private httpClient: HttpClient) {
@@ -56,5 +56,8 @@ export class ApartamentoService {
     return this.httpClient.get(this.apiUrl + '/titular/' + idTitular);
   }
 
+  buscarPorCondominio(idCondominio: number): any {
+    return this.httpClient.get(this.apiUrl + '/condominio/' + idCondominio);
+  }
 }
 

@@ -31,8 +31,8 @@ export class FaturamentoAddComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private faturamentoService: FaturamentoService, 
-    private CondominioService: CondominioService, 
-    private BoletoService: BoletoService) { }
+    private condominioService: CondominioService, 
+    private boletoService: BoletoService) { }
 
   ngOnInit() {
     this.exibirDialog = false;
@@ -40,17 +40,20 @@ export class FaturamentoAddComponent implements OnInit {
 
     this.faturamento = new Faturamento();
     this.faturamento.condominio = new Condominio();
-  this.condominios = [];
-  this.boletos = [];
+    this.condominios = [];
+    this.boletos = [];
 
-    this.buscarCondominio();
     //this.buscarBoleto();
-
+    
     this.activatedRoute.params.subscribe(params => {
-      if (params.id_condominio) {
+      console.log(params);
+      if (params.id) {
+        this.buscar(Number(params.id));
+      } if (params.id_condominio) {
         const idcondominio = params.id_condominio ? Number(params.id_condominio) : null;
-        this.buscarFaturamentoPorCondominio(Number(idcondominio));
+        this.buscarCondominioPorId(Number(idcondominio));
       } else {
+        this.buscarCondominio();
         this.consultar();
       }
     });
@@ -58,7 +61,7 @@ export class FaturamentoAddComponent implements OnInit {
   }
   
   buscarCondominio(){
-    this.CondominioService.consultar().subscribe((resposta: any) => {
+    this.condominioService.consultar().subscribe((resposta: any) => {
       const itens = resposta as Condominio[];
       itens.forEach(element => {
          this.condominios.push({label: element.nome, value: element});
@@ -70,8 +73,19 @@ export class FaturamentoAddComponent implements OnInit {
     );
   }
 
+  buscarCondominioPorId(id: number){
+    this.condominioService.buscar(id).subscribe((resposta: Condominio) => {
+      this.condominios.push({label: resposta.nome, value: resposta});
+      this.faturamento.condominio = resposta;
+      }, (error: any) => {
+        console.log(error);
+        alert(error.ok);
+      }
+    );
+  }
+
   buscarBoleto(){
-    this.BoletoService.consultar().subscribe((resposta: any) => {
+    this.boletoService.consultar().subscribe((resposta: any) => {
       const itens = resposta as Boleto[];
       itens.forEach(element => {
          this.boletos.push({label: element.apartamento.numero + '/' + element.id, value: element});
@@ -128,7 +142,7 @@ export class FaturamentoAddComponent implements OnInit {
       this.exibirDialog = false;
       this.novoRegistro = false;
       this.messageService.add({severity: 'success', summary: 'OK', detail: 'Registro adicionado com sucesso.'});
-      this.router.navigate(['/faturamento/faturamento-list']);
+      this.router.navigate(['/faturamento/condominio', this.faturamento.condominio.id]);
       }, (error: any) => {
         console.log(error);
         alert(error.ok);

@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { InputMaskModule } from 'primeng/inputmask';
 
 import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
 import { BoletoService } from './boleto.service';
@@ -21,7 +22,7 @@ import { BoletoListComponent } from './boleto-list/boleto-list.component';
   declarations: [BoletoAddComponent, BoletoListComponent],
   imports: [
     CommonModule, FormsModule,
-    ToastModule, PanelModule, TableModule, ButtonModule, DropdownModule, InputTextModule, ConfirmDialogModule,
+    ToastModule, PanelModule, TableModule, ButtonModule, DropdownModule, InputTextModule, ConfirmDialogModule, InputMaskModule,
     BoletoRoutingModule,
   ],
   providers: [MessageService, ConfirmationService, BoletoService]

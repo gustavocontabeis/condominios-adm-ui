@@ -6,7 +6,8 @@
      </div>
      <div class="p-field">
       <label id="label-periodo" for="periodo">Periodo</label>
-      <input id="periodo" name="periodo" #periodo="ngModel" pInputText placeholder="Periodo" [(ngModel)]="faturamento.periodo" [required]="true">
+      <p-inputMask id="periodo" name="periodo" #periodo="ngModel" placeholder="Periodo" 
+        [(ngModel)]="faturamento.periodo" [required]="true" mask="99/99/9999" ></p-inputMask>
      </div>
      <div class="p-field">
       <label id="label-condominio" for="condominio">Condominio</label>

@@ -6,6 +6,7 @@ import { ApartamentoListComponent } from './apartamento-list/apartamento-list.co
 const routes: Routes = [
   { path: 'apartamento-add', component: ApartamentoAddComponent },
   { path: 'apartamento-add/:id', component: ApartamentoAddComponent },
+  { path: 'apartamento-add/bloco/:id_bloco', component: ApartamentoAddComponent },
   { path: 'apartamento-list', component: ApartamentoListComponent },
   { path: 'bloco/:id_bloco', component: ApartamentoListComponent },
   { path: 'proprietario/:id_proprietario', component: ApartamentoListComponent },

@@ -1,16 +1,17 @@
-<form #boletoForm="ngForm" (ngSubmit)="onSubmit(boletoForm)">
+<p-panel header="Boletos" >
+  <form #boletoForm="ngForm" (ngSubmit)="onSubmit(boletoForm)">
     <div class="p-fluid" *ngIf="boleto">
      <div class="p-field">
       <label id="label-id" for="id">Id</label>
       <input id="id" name="id" #id="ngModel" pInputText pKeyFilter="int" placeholder="Id" [(ngModel)]="boleto.id" [required]="false" pattern="^\d+$">
      </div>
-     <div class="p-field">
+      <div class="p-field">
+        <label id="label-faturamento" for="faturamento">Faturamento</label>
+        <p-dropdown id="faturamento" name="faturamento" #faturamento="ngModel" [options]="faturamentos" [(ngModel)]="boleto.faturamento" [required]="true"></p-dropdown>
+     </div>
+    <div class="p-field">
       <label id="label-apartamento" for="apartamento">Apartamento</label>
       <p-dropdown id="apartamento" name="apartamento" #apartamento="ngModel" [options]="apartamentos" [(ngModel)]="boleto.apartamento" [required]="true"></p-dropdown>
-     </div>
-     <div class="p-field">
-      <label id="label-faturamento" for="faturamento">Faturamento</label>
-      <p-dropdown id="faturamento" name="faturamento" #faturamento="ngModel" [options]="faturamentos" [(ngModel)]="boleto.faturamento" [required]="true"></p-dropdown>
      </div>
      <div class="p-field">
       <label id="label-titular" for="titular">Titular</label>
@@ -18,27 +19,27 @@
      </div>
      <div class="p-field">
       <label id="label-vencimento" for="vencimento">Vencimento</label>
-      <input id="vencimento" name="vencimento" #vencimento="ngModel" pInputText placeholder="Vencimento" [(ngModel)]="boleto.vencimento" [required]="true">
+      <p-inputMask id="vencimento" name="vencimento" #vencimento="ngModel" placeholder="Vencimento" [(ngModel)]="boleto.vencimento" [required]="true" mask="99/99/9999"></p-inputMask>
      </div>
      <div class="p-field">
       <label id="label-pagamento" for="pagamento">Pagamento</label>
-      <input id="pagamento" name="pagamento" #pagamento="ngModel" pInputText placeholder="Pagamento" [(ngModel)]="boleto.pagamento" [required]="false">
+      <p-inputMask id="pagamento" name="pagamento" #pagamento="ngModel" placeholder="Pagamento" [(ngModel)]="boleto.pagamento" [required]="false" mask="99/99/9999"></p-inputMask>
      </div>
      <div class="p-field">
       <label id="label-valor" for="valor">Valor</label>
-      <input id="valor" name="valor" #valor="ngModel" pInputText placeholder="Valor" [(ngModel)]="boleto.valor" [required]="true">
+      <input id="valor" name="valor" #valor="ngModel" pInputText placeholder="Valor" [(ngModel)]="boleto.valor" [required]="true" (change)="atualizarValor()">
      </div>
      <div class="p-field">
       <label id="label-juros" for="juros">Juros</label>
-      <input id="juros" name="juros" #juros="ngModel" pInputText placeholder="Juros" [(ngModel)]="boleto.juros" [required]="false">
+      <input id="juros" name="juros" #juros="ngModel" pInputText placeholder="Juros" [(ngModel)]="boleto.juros" [required]="false" (change)="atualizarValor()">
      </div>
      <div class="p-field">
       <label id="label-multa" for="multa">Multa</label>
-      <input id="multa" name="multa" #multa="ngModel" pInputText placeholder="Multa" [(ngModel)]="boleto.multa" [required]="false">
+      <input id="multa" name="multa" #multa="ngModel" pInputText placeholder="Multa" [(ngModel)]="boleto.multa" [required]="false" (change)="atualizarValor()">
      </div>
      <div class="p-field">
       <label id="label-total" for="total">Total</label>
-      <input id="total" name="total" #total="ngModel" pInputText placeholder="Total" [(ngModel)]="boleto.total" [required]="true">
+      <input id="total" name="total" #total="ngModel" pInputText placeholder="Total" [(ngModel)]="boleto.total" [required]="true" [readonly]="true">
      </div>
     </div>
    </form>
@@ -46,10 +47,11 @@
     <button pButton icon="pi pi-check" (click)="salvar()" label="Salvar" style="margin-right: 2px;" [disabled]="!boletoForm.valid"></button>
     <button pButton icon="pi pi-times" (click)="confirmarExcluir()" label="Excluir" class="ui-button-secondary" style="margin-right: 2px;" *ngIf="boleto.id"></button>
    </div>
+
+  </p-panel>
    <p-confirmDialog #confirmacaoDialog header="Confirmação" icon="pi pi-exclamation-triangle">
     <p-footer>
      <button type="button" pButton icon="pi pi-times" label="Não" (click)="confirmacaoDialog.reject()"></button>
      <button type="button" pButton icon="pi pi-check" label="Sim" (click)="confirmacaoDialog.accept()"></button>
     </p-footer>
    </p-confirmDialog>
-   

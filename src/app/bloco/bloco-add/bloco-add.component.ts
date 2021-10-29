@@ -54,6 +54,7 @@ export class BlocoAddComponent implements OnInit {
         this.buscar(Number(id));
       } else if (params.id_condominio) {
         const idcondominio = params.id_condominio ? Number(params.id_condominio) : null;
+        this.buscarCondominioPorId(Number(idcondominio));
         this.buscarBlocoPorCondominio(Number(idcondominio));
       } else {
         this.consultar();
@@ -96,6 +97,15 @@ export class BlocoAddComponent implements OnInit {
     });
   }
 
+  buscarCondominioPorId(idCondominio: number) {
+    this.condominioService.buscar(idCondominio).subscribe((resposta: Condominio) => {
+      this.bloco.condominio = resposta;
+    }, (error: any) => {
+      console.log(error);
+      alert('erro Condominio.' + error);
+    });
+  }
+
   buscar(id: number) {
     this.blocoService.buscar(id).subscribe((resposta: any) => {
       this.bloco = resposta as Bloco;
@@ -132,7 +142,7 @@ export class BlocoAddComponent implements OnInit {
       this.exibirDialog = false;
       this.novoRegistro = false;
       this.messageService.add({severity: 'success', summary: 'OK', detail: 'Registro adicionado com sucesso.'});
-      this.router.navigate(['/bloco/bloco-list']);
+      this.router.navigate(['/bloco/condominio', this.bloco.condominio.id]);
       }, (error: any) => {
         console.log(error);
         alert(error.ok);

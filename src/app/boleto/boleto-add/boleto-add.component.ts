@@ -10,6 +10,8 @@ import { PessoaService } from 'src/app/pessoa/pessoa.service';
 import { Apartamento } from 'src/app/apartamento/apartamento';
 import { Faturamento } from 'src/app/faturamento/faturamento';
 import { Pessoa } from 'src/app/pessoa/pessoa';
+import { CondominioService } from 'src/app/condominio/condominio.service';
+import { Condominio } from 'src/app/condominio/condominio';
 
 @Component({
   selector: 'app-boleto-add',
@@ -25,8 +27,10 @@ export class BoletoAddComponent implements OnInit {
 
   apartamentos: SelectItem[] = [];
   faturamentos: SelectItem[] = [];
+  condominios: SelectItem[] = [];
   titulares: SelectItem[] = [];
 
+  condominio: Condominio = new Condominio;
 
   constructor(
     private router: Router,
@@ -34,27 +38,26 @@ export class BoletoAddComponent implements OnInit {
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private boletoService: BoletoService, 
-    private ApartamentoService: ApartamentoService, 
-    private FaturamentoService: FaturamentoService, 
-    private PessoaService: PessoaService) { }
+    private condominioService: CondominioService,
+    private apartamentoService: ApartamentoService, 
+    private faturamentoService: FaturamentoService, 
+    private pessoaService: PessoaService) { }
 
-  ngOnInit() {
+    async ngOnInit() {
     this.exibirDialog = false;
     this.novoRegistro = false;
     this.boleto = new Boleto();
     this.boleto.apartamento = new Apartamento();
     this.boleto.faturamento = new Faturamento()
-  this.apartamentos = [];
-  this.faturamentos = [];
-  this.titulares = [];
+    this.apartamentos = [];
+    this.faturamentos = [];
+    this.titulares = [];
 
-    this.buscarApartamento();
-    this.buscarFaturamento();
-    this.buscarPessoa();
+    await this.buscarCondominio();
+    await this.buscarPessoa();
 
     this.activatedRoute.params.subscribe(params => {
       console.log(params);
-      
       if (params.id) {
         this.boleto.id = Number(params.id);
         this.buscar(this.boleto.id);
@@ -65,18 +68,39 @@ export class BoletoAddComponent implements OnInit {
       } 
       if (params.id_faturamento) {
         const idfaturamento = params.id_faturamento ? Number(params.id_faturamento) : null;
-        this.buscarBoletoPorFaturamento(Number(idfaturamento));
+        this.faturamentoService.buscar(Number(idfaturamento)).subscribe((resposta: any) => {
+          this.boleto.faturamento = resposta as Faturamento;
+          console.log(this.boleto);
+          this.buscarFaturamento();
+          this.buscarApartamentosDoCondominio();
+        }, (error: any) => {
+            console.log(error);
+            alert(error.ok);
+          }
+        );
       } 
       if (params.id_titular) {
         const idtitular = params.id_titular ? Number(params.id_titular) : null;
         this.buscarBoletoPorTitular(Number(idtitular));
       } 
     });
-
   }
   
+  async buscarCondominio(){
+    this.condominioService.consultar().subscribe((resposta: any) => {
+      const itens = resposta as Condominio[];
+      itens.forEach(element => {
+         this.condominios.push({label: element.nome, value: element});
+      });
+      }, (error: any) => {
+        console.log(error);
+        alert(error.ok);
+      }
+    );
+  }
+
   buscarApartamento(){
-    this.ApartamentoService.consultar().subscribe((resposta: any) => {
+    this.apartamentoService.consultar().subscribe((resposta: any) => {
       const itens = resposta as Apartamento[];
       itens.forEach(element => {
          this.apartamentos.push({label: element.id + '/' + element.bloco.nome + '/' + element.numero, value: element});
@@ -87,20 +111,37 @@ export class BoletoAddComponent implements OnInit {
       }
     );
   }
-  buscarFaturamento(){
-    this.FaturamentoService.consultar().subscribe((resposta: any) => {
-      const itens = resposta as Faturamento[];
-      itens.forEach(element => {
-         this.faturamentos.push({label: element.condominio.nome + '/' + element.periodo, value: element});
-      });
+
+  buscarApartamentosDoCondominio(){
+    this.apartamentoService.buscarPorCondominio(this.boleto.faturamento.condominio.id).subscribe((resposta: Apartamento[]) => {
+      console.log('xxxxxxxxxxx', this.boleto.faturamento.condominio.id);
+      console.log(resposta);
+      
+      const itens = resposta;
+       itens.forEach(element => {
+          this.apartamentos.push({label: element.id + '/' + element.bloco.nome + '/' + element.numero, value: element});
+       });
       }, (error: any) => {
         console.log(error);
         alert(error.ok);
       }
     );
   }
+  
+  async buscarFaturamento(){
+    this.faturamentoService.buscar(this.boleto.faturamento.id).subscribe((resposta: any) => {
+      const element = resposta as Faturamento;
+      this.faturamentos = [];
+         this.faturamentos.push({label: element.condominio.nome + ' - ' + element.periodo, value: element});
+      }, (error: any) => {
+        console.log(error);
+        alert(error.ok);
+      }
+    );
+  }
+
   buscarPessoa(){
-    this.PessoaService.consultar().subscribe((resposta: any) => {
+    this.pessoaService.consultar().subscribe((resposta: any) => {
       const itens = resposta as Pessoa[];
       itens.forEach(element => {
          this.titulares.push({label: element.nome, value: element});
@@ -122,7 +163,10 @@ export class BoletoAddComponent implements OnInit {
   }
 
   buscarBoletoPorFaturamento(idFaturamento: number) {
+    console.log('buscarBoletoPorFaturamento 1');
     this.boletoService.buscarPorFaturamento(idFaturamento).subscribe((resposta: any) => {
+      console.log('buscarBoletoPorFaturamento 2');
+      console.log(resposta);
       this.boletos = resposta as Boleto[];
     }, (error: any) => {
       console.log(error);
@@ -181,12 +225,19 @@ export class BoletoAddComponent implements OnInit {
       this.exibirDialog = false;
       this.novoRegistro = false;
       this.messageService.add({severity: 'success', summary: 'OK', detail: 'Registro adicionado com sucesso.'});
-      this.router.navigate(['/boleto/boleto-list']);
+      this.router.navigate(['/boleto/faturamento/', this.boleto.faturamento.id]);
       }, (error: any) => {
         console.log(error);
         alert(error.ok);
       }
     );
+  }
+
+  atualizarValor(){
+    let valor = this.boleto.valor != null ? this.boleto.valor : 0;
+    let juros = this.boleto.juros != null ? this.boleto.juros : 0;
+    let multa = this.boleto.multa != null ? this.boleto.multa : 0;
+    this.boleto.total = Number(valor) + Number(juros) + Number(multa);
   }
 
   confirmarExcluir() {

@@ -6,6 +6,7 @@ import { FaturamentoListComponent } from './faturamento-list/faturamento-list.co
 const routes: Routes = [
   { path: 'faturamento-add', component: FaturamentoAddComponent },
   { path: 'faturamento-add/:id', component: FaturamentoAddComponent },
+  { path: 'faturamento-add/condominio/:id_condominio', component: FaturamentoAddComponent },
   { path: 'faturamento-list', component: FaturamentoListComponent },
   { path: 'condominio/:id_condominio', component: FaturamentoListComponent },
   { path: ':id', component: FaturamentoListComponent },

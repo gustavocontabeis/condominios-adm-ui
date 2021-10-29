@@ -6,6 +6,7 @@ import { BoletoListComponent } from './boleto-list/boleto-list.component';
 const routes: Routes = [
   { path: 'boleto-add', component: BoletoAddComponent },
   { path: 'boleto-add/:id', component: BoletoAddComponent },
+  { path: 'boleto-add/faturamento/:id_faturamento', component: BoletoAddComponent },
   { path: 'boleto-list', component: BoletoListComponent },
   { path: 'apartamento/:id_apartamento', component: BoletoListComponent },
   { path: 'faturamento/:id_faturamento', component: BoletoListComponent },
