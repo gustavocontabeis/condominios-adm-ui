@@ -8,6 +8,7 @@ import { PanelModule } from 'node_modules/primeng/panel';
 import { CondominioModule } from './condominio/condominio.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageService, ConfirmationService } from 'primeng/api';
+import { MenubarModule } from 'primeng/menubar';
 
 @NgModule({
   declarations: [
@@ -19,8 +20,9 @@ import { MessageService, ConfirmationService } from 'primeng/api';
     AppRoutingModule,
     BrowserAnimationsModule,
     PanelModule,
+    MenubarModule,
     CondominioModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]

@@ -43,9 +43,9 @@ export class CaixaAddComponent implements OnInit {
     this.exibirDialog = false;
     this.novoRegistro = false;
     this.caixa = new Caixa();
-  this.condominios = [];
-  this.pessoas = [];
-  this.centroDeCustos = [];
+    this.condominios = [];
+    this.pessoas = [];
+    this.centroDeCustos = [];
     this.tipoDocumentos = [{label: 'Selecione', value: null},
       {label: 'NOTA_FISCAL', value: 'NOTA_FISCAL'},
       {label: 'RECIBO', value: 'RECIBO'},

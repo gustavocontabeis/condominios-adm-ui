@@ -26,18 +26,9 @@ export class CentroDeCustoAddComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log('::::::::::::::::::::::::::::::::::::');
-    console.log('::::::::::::::::::::::::::::::::::::');
-    console.log('::::::::::::::::::::::::::::::::::::');
-    console.log('::::::::::::::::::::::::::::::::::::');
-    console.log('::::::::::::::::::::::::::::::::::::');
-    console.log('::::::::::::::::::::::::::::::::::::');
-    console.log('::::::::::::::::::::::::::::::::::::');
-    
     this.exibirDialog = false;
     this.novoRegistro = false;
     this.centroDeCusto = new CentroDeCusto();
-
 
     this.activatedRoute.params.subscribe(params => {
       const id = params.id ? Number(params.id) : null;
