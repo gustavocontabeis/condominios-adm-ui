@@ -261,6 +261,7 @@ export class BoletoAddComponent implements OnInit {
       this.exibirDialog = false;
       this.novoRegistro = false;
       this.messageService.add({severity: 'success', summary: 'OK', detail: 'Registro excluído com sucesso.'});
+      this.router.navigate(['/boleto/faturamento/', this.boleto.faturamento.id]);
       }, (error: any) => alert('erro boletos.')
     );
   }

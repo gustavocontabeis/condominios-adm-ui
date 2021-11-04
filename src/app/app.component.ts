@@ -45,9 +45,9 @@ export class AppComponent {
          {label: 'Listar Boleto', routerLink: 'boleto/boleto-list' , icon: 'pi pi-fw pi-list'},
          {label: 'Cadastrar Boleto', routerLink: 'boleto/boleto-add' , icon: 'pi pi-fw pi-plus'},
       ]},
-      {label: 'CentroDeCusto', icon: 'pi pi-fw pi-list', items: [
-         {label: 'Listar CentroDeCusto', routerLink: 'centro-de-custo/centro-de-custo-list' , icon: 'pi pi-fw pi-list'},
-         {label: 'Cadastrar CentroDeCusto', routerLink: 'centro-de-custo/centro-de-custo-add' , icon: 'pi pi-fw pi-plus'},
+      {label: 'Centro de Custo', icon: 'pi pi-fw pi-list', items: [
+         {label: 'Listar Centro de Custo', routerLink: 'centro-de-custo/centro-de-custo-list' , icon: 'pi pi-fw pi-list'},
+         {label: 'Cadastrar Centro de Custo', routerLink: 'centro-de-custo/centro-de-custo-add' , icon: 'pi pi-fw pi-plus'},
       ]},
       {label: 'Caixa', icon: 'pi pi-fw pi-list', items: [
          {label: 'Listar Caixa', routerLink: 'caixa/caixa-list' , icon: 'pi pi-fw pi-list'},
@@ -57,9 +57,9 @@ export class AppComponent {
          {label: 'Listar Banco', routerLink: 'banco/banco-list' , icon: 'pi pi-fw pi-list'},
          {label: 'Cadastrar Banco', routerLink: 'banco/banco-add' , icon: 'pi pi-fw pi-plus'},
       ]},
-      {label: 'BancoLancamento', icon: 'pi pi-fw pi-list', items: [
-         {label: 'Listar BancoLancamento', routerLink: 'banco-lancamento/banco-lancamento-list' , icon: 'pi pi-fw pi-list'},
-         {label: 'Cadastrar BancoLancamento', routerLink: 'banco-lancamento/banco-lancamento-add' , icon: 'pi pi-fw pi-plus'},
+      {label: 'Lancamento bancario', icon: 'pi pi-fw pi-list', items: [
+         {label: 'Listar Lancamento bancario', routerLink: 'banco-lancamento/banco-lancamento-list' , icon: 'pi pi-fw pi-list'},
+         {label: 'Cadastrar Lancamento bancario', routerLink: 'banco-lancamento/banco-lancamento-add' , icon: 'pi pi-fw pi-plus'},
       ]},
       {label: 'Garagem', icon: 'pi pi-fw pi-list', items: [
          {label: 'Listar Garagem', routerLink: 'garagem/garagem-list' , icon: 'pi pi-fw pi-list'},

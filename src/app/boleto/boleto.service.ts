@@ -56,5 +56,9 @@ export class BoletoService {
     return this.httpClient.get(this.apiUrl + '/titular/' + idTitular);
   }
 
+  buscarTotaisPorFaturamento(idFaturamento: number) {
+    return this.httpClient.get(this.apiUrl + '/totais/faturamento/' + idFaturamento);
+  }
+
 }
 

@@ -8,6 +8,7 @@ import { CondominioService } from 'src/app/condominio/condominio.service';
 import { BoletoService } from 'src/app/boleto/boleto.service';
 import { Condominio } from 'src/app/condominio/condominio';
 import { Boleto } from 'src/app/boleto/boleto';
+import { Totais } from 'src/app/dto/totais';
 
 @Component({
   selector: 'app-faturamento-add',
@@ -20,10 +21,10 @@ export class FaturamentoAddComponent implements OnInit {
   faturamentos!: Faturamento[];
   exibirDialog!: boolean;
   novoRegistro!: boolean;
+  totais!: Totais[];
 
   condominios: SelectItem[] = [];
   boletos: SelectItem[] = [];
-
 
   constructor(
     private router: Router,
@@ -49,6 +50,7 @@ export class FaturamentoAddComponent implements OnInit {
       console.log(params);
       if (params.id) {
         this.buscar(Number(params.id));
+        this.buscarTotaisPorFaturamento(Number(params.id));
       } if (params.id_condominio) {
         const idcondominio = params.id_condominio ? Number(params.id_condominio) : null;
         this.buscarCondominioPorId(Number(idcondominio));
@@ -58,6 +60,16 @@ export class FaturamentoAddComponent implements OnInit {
       }
     });
 
+  }
+
+  buscarTotaisPorFaturamento(idFaturamento: number) {
+    console.log('buscarTotaisPorFaturamento() 1');
+    console.log(idFaturamento);
+    this.boletoService.buscarTotaisPorFaturamento(idFaturamento).subscribe(resposta=>{
+      console.log('buscarTotaisPorFaturamento 2');
+      console.log(resposta);
+      this.totais = resposta as Totais[]
+    });
   }
   
   buscarCondominio(){

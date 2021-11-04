@@ -26,3 +26,23 @@
     </p-footer>
    </p-confirmDialog>
    
+   <p-table [value]="totais" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+     <tr>
+      <th>Descricao</th>
+      <th>Valor</th>
+      <th>Juros</th>
+      <th>Multa</th>
+      <th>Total</th>
+     </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-t>
+     <tr>
+      <td class="horizontal-compact" style="text-align: left;">{{t.descricao}}</td>
+      <td class="horizontal-compact" style="text-align: right;">{{t.valor | currency:'BRL':true:'1.2-2'}}</td>
+      <td class="horizontal-compact" style="text-align: right;">{{t.juros | currency:'BRL':true:'1.2-2'}}</td>
+      <td class="horizontal-compact" style="text-align: right;">{{t.multa | currency:'BRL':true:'1.2-2'}}</td>
+      <td class="horizontal-compact" style="text-align: right;">{{t.total | currency:'BRL':true:'1.2-2'}}</td>
+     </tr>
+    </ng-template>
+   </p-table>
