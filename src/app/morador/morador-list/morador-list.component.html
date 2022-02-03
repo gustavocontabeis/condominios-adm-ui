@@ -3,7 +3,7 @@
   <ng-template pTemplate="icons">
       <button pButton class="p-panel-header-icon p-link" title="Adicionar morador a este apartamento."
       [routerLink]="['/morador/morador-add/apartamento/', morador.apartamento.id]">
-          <span class="pi pi-plus"></span>
+          <span class="pi pi-plus-circle"></span>
       </button>
   </ng-template>
 <p-table [value]="moradores" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,15,20,50,100]" [lazy]="true" (onLazyLoad)="consultarPaginado($event)" responsiveLayout="scroll" [totalRecords]="totalRecords" sortMode="multiple" [showCurrentPageReport]="true" currentPageReportTemplate="Exibindo {first} até {last} de {totalRecords} registros.">

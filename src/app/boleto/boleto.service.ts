@@ -60,5 +60,8 @@ export class BoletoService {
     return this.httpClient.get(this.apiUrl + '/totais/faturamento/' + idFaturamento);
   }
 
+  toPay(id: number) {
+    return this.httpClient.get(this.apiUrl + '/to-pay/' + id);
+  }
 }
 

@@ -161,5 +161,16 @@ export class BoletoListComponent implements OnInit {
 
   }
 
+  toPay(id: number){
+    this.boletoService.toPay(id).subscribe((resposta: any) => {
+      this.boletos = resposta as Boleto[];
+      this.messageService.add({severity: 'success', summary: 'Boleto pago', detail: 'Boleto pago com sucesso.'});
+      //this.consultarPaginado({filters:{}});
+    }, (error: string) => {
+      console.log(error);
+      alert('erro boletos.' + error);
+    });
+  }
+
 }
 

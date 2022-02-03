@@ -1,9 +1,10 @@
+<p-toast></p-toast>
 <br>
 <p-panel header="Boletos" >
     <ng-template pTemplate="icons">
         <button pButton class="p-panel-header-icon p-link" title="Adicionar boletos a este faturamento."
         [routerLink]="['/boleto/boleto-add/faturamento/', boleto.faturamento.id]">
-            <span class="pi pi-plus"></span>
+            <span class="pi pi-plus-circle"></span>
         </button>
     </ng-template>
     <p-table [value]="boletos" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,15,20,50,100]" [lazy]="true" (onLazyLoad)="consultarPaginado($event)" responsiveLayout="scroll" [totalRecords]="totalRecords" sortMode="multiple" [showCurrentPageReport]="true" currentPageReportTemplate="Exibindo {first} até {last} de {totalRecords} registros.">
@@ -54,7 +55,10 @@
         <td class="horizontal-compact">{{boleto.juros| currency:'BRL':true:'1.2-2'}}</td>
         <td class="horizontal-compact">{{boleto.multa| currency:'BRL':true:'1.2-2'}}</td>
         <td class="horizontal-compact">{{boleto.total| currency:'BRL':true:'1.2-2'}}</td>
-        <td><button pButton icon="pi pi-pencil" [routerLink]="['/boleto/boleto-add/', boleto.id]" title="Selecionar Boleto"></button></td>
+        <td>
+            <button pButton icon="pi pi-pencil" [routerLink]="['/boleto/boleto-add/', boleto.id]" title="Selecionar Boleto" style="margin-right: 2px;"></button>
+            <button pButton icon="pi pi-money-bill" (click)="toPay(boleto.id)" title="Pagar Boleto"></button>
+        </td>
         </tr>
         </ng-template>
     </p-table>
