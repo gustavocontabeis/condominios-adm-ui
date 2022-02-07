@@ -37,7 +37,6 @@ export class ApartamentoListComponent implements OnInit {
 //[buscarFK]
     this.activatedRoute.params.subscribe(params => {
       if (params.id_bloco) {
-        console.log('xxxxxxxxxxxxxxxxxxxxxx');
         const idbloco = params.id_bloco ? Number(params.id_bloco) : null;
         this.apartamento.bloco.id = Number(idbloco);
       }

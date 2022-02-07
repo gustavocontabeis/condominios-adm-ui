@@ -9,7 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-
+import { InputMaskModule } from 'primeng/inputmask';
 import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
 import { CaixaService } from './caixa.service';
 
@@ -23,7 +23,7 @@ import { CaixaListComponent } from './caixa-list/caixa-list.component';
   imports: [
     CommonModule, FormsModule,
     ToastModule, PanelModule, TableModule, ButtonModule, DropdownModule, InputTextModule, ConfirmDialogModule,
-    CaixaRoutingModule,
+    CaixaRoutingModule, InputMaskModule,
   ],
   providers: [MessageService, ConfirmationService, CaixaService]
 })

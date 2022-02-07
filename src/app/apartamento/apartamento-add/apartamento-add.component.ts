@@ -84,6 +84,10 @@ export class ApartamentoAddComponent implements OnInit {
       const itens = resposta as Bloco[];
       itens.forEach(element => {
          this.blocos.push({label: element.nome, value: element});
+         let item = element as Bloco;
+         if(this.apartamento.bloco && this.apartamento.bloco.id == item.id){
+          this.apartamento.bloco = item;
+         }
       });
       }, (error: any) => {
         console.log(error);

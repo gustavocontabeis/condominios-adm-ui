@@ -14,7 +14,7 @@
      </div>
      <div class="p-field">
       <label id="label-data" for="data">Data</label>
-      <input id="data" name="data" #data="ngModel" pInputText placeholder="Data" [(ngModel)]="caixa.data" [required]="true">
+      <p-inputMask id="data" name="data" #data="ngModel" placeholder="Data" [(ngModel)]="caixa.data" [required]="true" mask="99/99/9999 99:99" ></p-inputMask>
      </div>
      <div class="p-field">
       <label id="label-centroDeCusto" for="centroDeCusto">Centro de custo</label>

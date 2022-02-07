@@ -55,6 +55,8 @@ export class BoletoAddComponent implements OnInit {
 
     await this.buscarCondominio();
     await this.buscarPessoa();
+    await this.buscarApartamento();
+    //await this.buscarFaturamento();
 
     this.activatedRoute.params.subscribe(params => {
       console.log(params);
@@ -114,9 +116,6 @@ export class BoletoAddComponent implements OnInit {
 
   buscarApartamentosDoCondominio(){
     this.apartamentoService.buscarPorCondominio(this.boleto.faturamento.condominio.id).subscribe((resposta: Apartamento[]) => {
-      console.log('xxxxxxxxxxx', this.boleto.faturamento.condominio.id);
-      console.log(resposta);
-      
       const itens = resposta;
        itens.forEach(element => {
           this.apartamentos.push({label: element.id + '/' + element.bloco.nome + '/' + element.numero, value: element});
@@ -186,12 +185,9 @@ export class BoletoAddComponent implements OnInit {
   buscar(id: number) {
     this.boletoService.buscar(id).subscribe((resposta: any) => {
       this.boleto = resposta as Boleto;
-      this.boleto.apartamento.id
-      this.apartamentos.forEach(i=>{
-        if(this.boleto.apartamento.id == i.value.id){
-          this.boleto.apartamento = i.value;
-        }
-      });
+      console.log(this.boleto);
+      this.apartamentos.push({label: this.boleto.apartamento.numero, value: this.boleto.apartamento});
+      this.faturamentos.push({label: this.boleto.faturamento.periodo, value: this.boleto.faturamento});
     }, (error: any) => {
       console.log(error);
       alert('erro boletos.' + error);

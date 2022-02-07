@@ -3,7 +3,7 @@ import { BlocoService } from '../bloco.service';
 import { Component, OnInit } from '@angular/core';
 import { Bloco } from '../bloco';
 import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CondominioService } from 'src/app/condominio/condominio.service';
 import { ApartamentoService } from 'src/app/apartamento/apartamento.service';
 import { Condominio } from 'src/app/condominio/condominio';
@@ -31,25 +31,33 @@ export class BlocoAddComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private blocoService: BlocoService, 
-    private condominioService: CondominioService, 
+    private blocoService: BlocoService,
+    private condominioService: CondominioService,
     private apartamentosService: ApartamentoService) { }
 
   ngOnInit() {
+    console.log('BLOCO ngOnInit');
+    
     this.exibirDialog = false;
     this.novoRegistro = false;
     this.bloco = new Bloco();
-    this.tipos = [{label: 'Selecione', value: null},
-      {label: 'BLOCO', value: 'BLOCO'},
-      {label: 'TORRE', value: 'TORRE'},
-];  this.condominios = [];
-  this.apartamentos = [];
+
+    this.tipos = [{ label: 'Selecione', value: null },
+    { label: 'BLOCO', value: 'BLOCO' },
+    { label: 'TORRE', value: 'TORRE' },
+    ]; 
+    
+    this.condominios = [];
+    this.apartamentos = [];
 
     this.buscarCondominio();
     this.buscarApartamentos();
 
     this.activatedRoute.params.subscribe(params => {
+      console.log(params);
       if (params.id) {
+        console.log('2222');
+        
         const id = params.id ? Number(params.id) : null;
         this.buscar(Number(id));
       } else if (params.id_condominio) {
@@ -62,29 +70,33 @@ export class BlocoAddComponent implements OnInit {
     });
 
   }
-  
-  buscarCondominio(){
+
+  buscarCondominio() {
     this.condominioService.consultar().subscribe((resposta: any) => {
       const itens = resposta as Condominio[];
       itens.forEach(element => {
-         this.condominios.push({label: element.nome, value: element});
+        this.condominios.push({ label: element.nome, value: element });
+        let item = element as Condominio;
+        if(this.bloco.condominio && this.bloco.condominio.id == item.id){
+          this.bloco.condominio = item;
+        }
       });
-      }, (error: any) => {
-        console.log(error);
-        alert(error.ok);
-      }
+    }, (error: any) => {
+      console.log(error);
+      alert(error.ok);
+    }
     );
   }
-  buscarApartamentos(){
+  buscarApartamentos() {
     this.apartamentosService.consultar().subscribe((resposta: any) => {
       const itens = resposta as Apartamento[];
       itens.forEach(element => {
-         this.apartamentos.push({label: element.numero, value: element});
+        this.apartamentos.push({ label: element.numero, value: element });
       });
-      }, (error: any) => {
-        console.log(error);
-        alert(error.ok);
-      }
+    }, (error: any) => {
+      console.log(error);
+      alert(error.ok);
+    }
     );
   }
 
@@ -100,6 +112,15 @@ export class BlocoAddComponent implements OnInit {
   buscarCondominioPorId(idCondominio: number) {
     this.condominioService.buscar(idCondominio).subscribe((resposta: Condominio) => {
       this.bloco.condominio = resposta;
+      console.log(this.bloco.condominio);
+
+      this.condominios.forEach(element => {
+        let x = element.value as Condominio
+        if(this.bloco.condominio.id = x.id){
+          this.bloco.condominio = x;
+        }
+      });
+
     }, (error: any) => {
       console.log(error);
       alert('erro Condominio.' + error);
@@ -141,12 +162,12 @@ export class BlocoAddComponent implements OnInit {
       this.consultar();
       this.exibirDialog = false;
       this.novoRegistro = false;
-      this.messageService.add({severity: 'success', summary: 'OK', detail: 'Registro adicionado com sucesso.'});
+      this.messageService.add({ severity: 'success', summary: 'OK', detail: 'Registro adicionado com sucesso.' });
       this.router.navigate(['/bloco/condominio', this.bloco.condominio.id]);
-      }, (error: any) => {
-        console.log(error);
-        alert(error.ok);
-      }
+    }, (error: any) => {
+      console.log(error);
+      alert(error.ok);
+    }
     );
   }
 
@@ -155,11 +176,11 @@ export class BlocoAddComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Tem certeza que deseja excluir este registro?',
       accept: () => {
-          console.log('confirmarExcluir - accept');
-          this.excluir();
+        console.log('confirmarExcluir - accept');
+        this.excluir();
       },
       reject: () => {
-          this.messageService.add({severity: 'success', summary: 'Cancelado', detail: 'Ok. Cancelado.'});
+        this.messageService.add({ severity: 'success', summary: 'Cancelado', detail: 'Ok. Cancelado.' });
       }
     });
   }
@@ -170,15 +191,15 @@ export class BlocoAddComponent implements OnInit {
       this.consultar();
       this.exibirDialog = false;
       this.novoRegistro = false;
-      this.messageService.add({severity: 'success', summary: 'OK', detail: 'Registro excluído com sucesso.'});
-      }, (error: any) => alert('erro blocos.')
+      this.messageService.add({ severity: 'success', summary: 'OK', detail: 'Registro excluído com sucesso.' });
+    }, (error: any) => alert('erro blocos.')
     );
   }
 
   aoSelecionar(event: any) {
     this.novoRegistro = false;
   }
-  
+
   onSubmit(blocoForm: any) {
 
   }
