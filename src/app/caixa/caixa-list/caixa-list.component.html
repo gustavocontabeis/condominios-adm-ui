@@ -39,7 +39,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-caixa>
      <tr>
-      <td class="horizontal-compact" style="text-align: right;">{{caixa.id}}</td>
+      <td class="horizontal-compact id" style="text-align: right;">{{caixa.id}}</td>
       <td class="horizontal-compact"><a [routerLink]="['/condominio/', caixa.condominio.id]">{{caixa.condominio.nome}}</a></td>
       <td class="horizontal-compact"><a [routerLink]="['/pessoa/', caixa.pessoa.id]">{{caixa.pessoa.nome}}</a></td>
       <td class="horizontal-compact">{{caixa.data}}</td>
@@ -48,8 +48,8 @@
       <td class="horizontal-compact">{{caixa.para}}</td>
       <td class="horizontal-compact">{{caixa.cpfCnpj}}</td>
       <td class="horizontal-compact">{{caixa.descricao}}</td>
-      <td class="horizontal-compact">{{caixa.valor}}</td>
-      <td class="horizontal-compact">{{caixa.saldo}}</td>
+      <td class="horizontal-compact">{{caixa.valor| currency:'BRL':true:'1.2-2'}}</td>
+      <td class="horizontal-compact">{{caixa.saldo| currency:'BRL':true:'1.2-2'}}</td>
       <td><button pButton icon="pi pi-pencil" [routerLink]="['/caixa/caixa-add/', caixa.id]" title="Selecionar Caixa"></button></td>
      </tr>
     </ng-template>

@@ -24,7 +24,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-banco>
      <tr>
-      <td class="horizontal-compact" style="text-align: right;">{{banco.id}}</td>
+      <td class="horizontal-compact id" style="text-align: right;">{{banco.id}}</td>
       <td class="horizontal-compact"><a [routerLink]="['/condominio/', banco.condominio.id]">{{banco.condominio.nome}}</a></td>
       <td class="horizontal-compact" style="text-align: right;">{{banco.numero}}</td>
       <td class="horizontal-compact">{{banco.agencia}}</td>

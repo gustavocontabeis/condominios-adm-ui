@@ -29,7 +29,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-apartamento>
      <tr>
-      <td class="horizontal-compact" style="text-align: right;">{{apartamento.id}}</td>
+      <td class="horizontal-compact id" style="text-align: right;">{{apartamento.id}}</td>
       <td class="horizontal-compact">{{apartamento.numero}}</td>
       <td class="horizontal-compact"><a [routerLink]="['/bloco/', apartamento.bloco.id]">{{apartamento.bloco.nome}}</a></td>
       <td class="horizontal-compact"><a [routerLink]="['/proprietario/proprietario-add/', apartamento.id]">{{apartamento.proprietario.nome}}</a></td>

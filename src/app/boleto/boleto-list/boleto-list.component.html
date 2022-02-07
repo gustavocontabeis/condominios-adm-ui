@@ -45,7 +45,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-boleto>
         <tr>
-        <td class="horizontal-compact" style="text-align: right;">{{boleto.id}}</td>
+        <td class="horizontal-compact id" style="text-align: right;">{{boleto.id}}</td>
         <td class="horizontal-compact"><a [routerLink]="['/apartamento/', boleto.apartamento.id]">{{boleto.apartamento.numero}}</a></td>
         <td class="horizontal-compact"><a [routerLink]="['/faturamento/', boleto.faturamento.id]">{{boleto.faturamento.condominio.nome}} - {{boleto.faturamento.periodo}}</a></td>
         <td class="horizontal-compact"><a [routerLink]="['/titular/', boleto.titular.id]">{{boleto.titular.nome}}</a></td>

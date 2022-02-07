@@ -12,7 +12,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-centroDeCusto>
      <tr>
-      <td class="horizontal-compact" style="text-align: right;">{{centroDeCusto.id}}</td>
+      <td class="horizontal-compact id" style="text-align: right;">{{centroDeCusto.id}}</td>
       <td class="horizontal-compact">{{centroDeCusto.nome}}</td>
       <td>
           <button pButton icon="pi pi-pencil" [routerLink]="['/centro-de-custo/centro-de-custo-add/', centroDeCusto.id]" title="Selecionar Centro de custo"></button>

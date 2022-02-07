@@ -26,7 +26,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-morador>
      <tr>
-      <td class="horizontal-compact" style="text-align: right;">{{morador.id}}</td>
+      <td class="horizontal-compact id" style="text-align: right;">{{morador.id}}</td>
       <td class="horizontal-compact"><a [routerLink]="['/pessoa/', morador.pessoa.id]">{{morador.pessoa.nome}}</a></td>
       <td class="horizontal-compact" style="text-align: center;">{{morador.proprietario?'Sim':'Não' }}</td>
       <td class="horizontal-compact"><a [routerLink]="['/apartamento/', morador.apartamento.id]">{{morador.apartamento.numero}}</a></td>

@@ -9,6 +9,8 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { InputMaskModule } from 'primeng/inputmask';
+import { NgxCurrencyModule } from "ngx-currency";
 
 import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
 import { BancoLancamentoAddComponent } from './banco-lancamento-add/banco-lancamento-add.component';
@@ -22,7 +24,7 @@ import { BancoLancamentoService } from './banco-lancamento.service';
   imports: [
     CommonModule, FormsModule,
     ToastModule, PanelModule, TableModule, ButtonModule, DropdownModule, InputTextModule, ConfirmDialogModule,
-    BancoLancamentoRoutingModule,
+    BancoLancamentoRoutingModule, InputMaskModule, NgxCurrencyModule
   ],
   providers: [MessageService, ConfirmationService, BancoLancamentoService]
 })

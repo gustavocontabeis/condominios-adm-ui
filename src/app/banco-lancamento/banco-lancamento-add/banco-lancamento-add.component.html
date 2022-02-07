@@ -10,7 +10,7 @@
      </div>
      <div class="p-field">
       <label id="label-data" for="data">Data</label>
-      <input id="data" name="data" #data="ngModel" pInputText placeholder="Data" [(ngModel)]="bancoLancamento.data" [required]="true">
+      <p-inputMask id="data" name="data" #data="ngModel" placeholder="Data" [(ngModel)]="bancoLancamento.data" [required]="true" mask="99/99/9999 99:99"></p-inputMask>
      </div>
      <div class="p-field">
       <label id="label-centroDeCusto" for="centroDeCusto">Centro de custo</label>
@@ -26,11 +26,11 @@
      </div>
      <div class="p-field">
       <label id="label-valor" for="valor">Valor</label>
-      <input id="valor" name="valor" #valor="ngModel" pInputText placeholder="Valor" [(ngModel)]="bancoLancamento.valor" [required]="true">
+      <input id="valor" name="valor" #valor="ngModel" pInputText currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Valor" [(ngModel)]="bancoLancamento.valor" [required]="true">
      </div>
      <div class="p-field">
       <label id="label-saldo" for="saldo">Saldo</label>
-      <input id="saldo" name="saldo" #saldo="ngModel" pInputText placeholder="Saldo" [(ngModel)]="bancoLancamento.saldo" [required]="true">
+      <input id="saldo" name="saldo" #saldo="ngModel" pInputText currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Saldo" [(ngModel)]="bancoLancamento.saldo" [required]="true">
      </div>
     </div>
    </form>

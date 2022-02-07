@@ -230,6 +230,7 @@ export class BoletoAddComponent implements OnInit {
   }
 
   atualizarValor(){
+    console.log('atualizarValor()', this.boleto.valor, this.boleto.juros, this.boleto.multa, this.boleto.total);
     let valor = this.boleto.valor != null ? this.boleto.valor : 0;
     let juros = this.boleto.juros != null ? this.boleto.juros : 0;
     let multa = this.boleto.multa != null ? this.boleto.multa : 0;

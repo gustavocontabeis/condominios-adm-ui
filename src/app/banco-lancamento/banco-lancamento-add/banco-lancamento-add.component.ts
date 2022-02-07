@@ -48,6 +48,8 @@ export class BancoLancamentoAddComponent implements OnInit {
     this.buscarCentroDeCusto();
 
     this.activatedRoute.params.subscribe(params => {
+      console.log(params); 
+      
       if (params.id_banco) {
         const idbanco = params.id_banco ? Number(params.id_banco) : null;
         this.buscarBancoLancamentoPorBanco(Number(idbanco));

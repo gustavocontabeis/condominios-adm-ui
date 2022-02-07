@@ -10,6 +10,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputMaskModule } from 'primeng/inputmask';
+import { NgxCurrencyModule } from "ngx-currency";
 
 import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
 import { BoletoService } from './boleto.service';
@@ -23,7 +24,7 @@ import { BoletoListComponent } from './boleto-list/boleto-list.component';
   imports: [
     CommonModule, FormsModule,
     ToastModule, PanelModule, TableModule, ButtonModule, DropdownModule, InputTextModule, ConfirmDialogModule, InputMaskModule,
-    BoletoRoutingModule,
+    BoletoRoutingModule, NgxCurrencyModule, 
   ],
   providers: [MessageService, ConfirmationService, BoletoService]
 })

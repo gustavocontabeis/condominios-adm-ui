@@ -3,7 +3,7 @@ import { BancoService } from '../banco.service';
 import { Component, OnInit } from '@angular/core';
 import { Banco } from '../banco';
 import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { CondominioService } from 'src/app/condominio/condominio.service';
 import { Condominio } from 'src/app/condominio/condominio';
 
@@ -29,7 +29,7 @@ export class BancoAddComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private bancoService: BancoService, 
+    private bancoService: BancoService,
     private condominioService: CondominioService) { }
 
   ngOnInit() {
@@ -37,36 +37,42 @@ export class BancoAddComponent implements OnInit {
     this.novoRegistro = false;
     this.banco = new Banco();
     this.banco.condominio = new Condominio();
-    
+
     this.condominios = [];
-    this.tipos = [{label: 'Selecione', value: null},
-      {label: 'CONTA_CORRENTE', value: 'CONTA_CORRENTE'},
-      {label: 'POUPANCA', value: 'POUPANCA'},
-];  this.lancamentos = [];
+    this.tipos = [{ label: 'Selecione', value: null },
+      { label: 'CONTA CORRENTE', value: 'CONTA_CORRENTE' },
+      { label: 'POUPANCA', value: 'POUPANCA' },
+    ]; 
+    this.lancamentos = [];
 
     this.buscarCondominio();
 
     this.activatedRoute.params.subscribe(params => {
-      if (params.id_condominio) {
-        const idcondominio = params.id_condominio ? Number(params.id_condominio) : null;
-        this.buscarBancoPorCondominio(Number(idcondominio));
-      } else {
-        this.consultar();
+      console.log(params);
+      
+      if (params.id) {
+        const id = params.id ? Number(params.id) : null;
+        this.buscar(Number(id));
+      } else if (params.id_condominio) {
+          const idcondominio = params.id_condominio ? Number(params.id_condominio) : null;
+          this.buscarBancoPorCondominio(Number(idcondominio));
+        } else {
+          this.consultar();
       }
     });
 
   }
-  
-  buscarCondominio(){
+
+  buscarCondominio() {
     this.condominioService.consultar().subscribe((resposta: any) => {
       const itens = resposta as Condominio[];
       itens.forEach(element => {
-         this.condominios.push({label: element.nome, value: element});
+        this.condominios.push({ label: element.nome, value: element });
       });
-      }, (error: any) => {
-        console.log(error);
-        alert(error.ok);
-      }
+    }, (error: any) => {
+      console.log(error);
+      alert(error.ok);
+    }
     );
   }
 
@@ -82,6 +88,13 @@ export class BancoAddComponent implements OnInit {
   buscar(id: number) {
     this.bancoService.buscar(id).subscribe((resposta: any) => {
       this.banco = resposta as Banco;
+      console.log(this.banco);
+      this.condominios.forEach(c=>{
+        if(c.value.id == this.banco.condominio.id){
+          this.banco.condominio = c.value;
+        }
+      });
+      
     }, (error: any) => {
       console.log(error);
       alert('erro bancos.' + error);
@@ -114,12 +127,12 @@ export class BancoAddComponent implements OnInit {
       this.consultar();
       this.exibirDialog = false;
       this.novoRegistro = false;
-      this.messageService.add({severity: 'success', summary: 'OK', detail: 'Registro adicionado com sucesso.'});
+      this.messageService.add({ severity: 'success', summary: 'OK', detail: 'Registro adicionado com sucesso.' });
       this.router.navigate(['/banco/banco-list']);
-      }, (error: any) => {
-        console.log(error);
-        alert(error.ok);
-      }
+    }, (error: any) => {
+      console.log(error);
+      alert(error.ok);
+    }
     );
   }
 
@@ -128,11 +141,11 @@ export class BancoAddComponent implements OnInit {
     this.confirmationService.confirm({
       message: 'Tem certeza que deseja excluir este registro?',
       accept: () => {
-          console.log('confirmarExcluir - accept');
-          this.excluir();
+        console.log('confirmarExcluir - accept');
+        this.excluir();
       },
       reject: () => {
-          this.messageService.add({severity: 'success', summary: 'Cancelado', detail: 'Ok. Cancelado.'});
+        this.messageService.add({ severity: 'success', summary: 'Cancelado', detail: 'Ok. Cancelado.' });
       }
     });
   }
@@ -143,15 +156,15 @@ export class BancoAddComponent implements OnInit {
       this.consultar();
       this.exibirDialog = false;
       this.novoRegistro = false;
-      this.messageService.add({severity: 'success', summary: 'OK', detail: 'Registro excluído com sucesso.'});
-      }, (error: any) => alert('erro bancos.')
+      this.messageService.add({ severity: 'success', summary: 'OK', detail: 'Registro excluído com sucesso.' });
+    }, (error: any) => alert('erro bancos.')
     );
   }
 
   aoSelecionar(event: any) {
     this.novoRegistro = false;
   }
-  
+
   onSubmit(bancoForm: any) {
 
   }

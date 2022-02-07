@@ -28,7 +28,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-bloco>
      <tr>
-      <td class="horizontal-compact" style="text-align: right;">{{bloco.id}}</td>
+      <td class="horizontal-compact id" style="text-align: right;">{{bloco.id}}</td>
       <td class="horizontal-compact">{{bloco.nome}}</td>
       <td class="horizontal-compact">{{bloco.tipo}}</td>
       <td class="horizontal-compact"><a [routerLink]="['/condominio/', bloco.condominio.id]">{{bloco.condominio.nome}}</a></td>

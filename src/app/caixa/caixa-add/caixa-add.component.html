@@ -38,11 +38,11 @@
      </div>
      <div class="p-field">
       <label id="label-valor" for="valor">Valor</label>
-      <input id="valor" name="valor" #valor="ngModel" pInputText placeholder="Valor" [(ngModel)]="caixa.valor" [required]="true">
+      <input id="valor" name="valor" #valor="ngModel" pInputText currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Valor" [(ngModel)]="caixa.valor" [required]="true">
      </div>
      <div class="p-field">
       <label id="label-saldo" for="saldo">Saldo</label>
-      <input id="saldo" name="saldo" #saldo="ngModel" pInputText placeholder="Saldo" [(ngModel)]="caixa.saldo" [required]="true">
+      <input id="saldo" name="saldo" #saldo="ngModel" pInputText currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Saldo" [(ngModel)]="caixa.saldo" [required]="true">
      </div>
     </div>
    </form>

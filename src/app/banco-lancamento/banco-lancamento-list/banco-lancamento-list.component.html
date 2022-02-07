@@ -30,14 +30,14 @@
     </ng-template>
     <ng-template pTemplate="body" let-bancoLancamento>
      <tr>
-      <td class="horizontal-compact" style="text-align: right;">{{bancoLancamento.id}}</td>
+      <td class="horizontal-compact id" style="text-align: right;">{{bancoLancamento.id}}</td>
       <td class="horizontal-compact"><a [routerLink]="['/banco/', bancoLancamento.banco.id]">{{bancoLancamento.banco.id}}</a></td>
       <td class="horizontal-compact">{{bancoLancamento.data}}</td>
       <td class="horizontal-compact"><a [routerLink]="['/centroDeCusto/', bancoLancamento.centroDeCusto.id]">{{bancoLancamento.centroDeCusto.nome}}</a></td>
       <td class="horizontal-compact">{{bancoLancamento.documento}}</td>
       <td class="horizontal-compact">{{bancoLancamento.historico}}</td>
-      <td class="horizontal-compact">{{bancoLancamento.valor}}</td>
-      <td class="horizontal-compact">{{bancoLancamento.saldo}}</td>
+      <td class="horizontal-compact">{{bancoLancamento.valor| currency:'BRL':true:'1.2-2'}}</td>
+      <td class="horizontal-compact">{{bancoLancamento.saldo| currency:'BRL':true:'1.2-2'}}</td>
       <td><button pButton icon="pi pi-pencil" [routerLink]="['/banco-lancamento/banco-lancamento-add/', bancoLancamento.id]" title="Selecionar Banco lancamento"></button></td>
      </tr>
     </ng-template>

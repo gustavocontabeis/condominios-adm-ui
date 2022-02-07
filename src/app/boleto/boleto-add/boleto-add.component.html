@@ -27,26 +27,26 @@
      </div>
      <div class="p-field">
       <label id="label-valor" for="valor">Valor</label>
-      <input id="valor" name="valor" #valor="ngModel" pInputText placeholder="Valor" [(ngModel)]="boleto.valor" [required]="true" (change)="atualizarValor()">
+      <input id="valor" name="valor" #valor="ngModel" pInputText currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  placeholder="Valor" [(ngModel)]="boleto.valor" [required]="true" (focusout)="atualizarValor()">
      </div>
      <div class="p-field">
       <label id="label-juros" for="juros">Juros</label>
-      <input id="juros" name="juros" #juros="ngModel" pInputText placeholder="Juros" [(ngModel)]="boleto.juros" [required]="false" (change)="atualizarValor()">
+      <input id="juros" name="juros" #juros="ngModel" pInputText currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  placeholder="Juros" [(ngModel)]="boleto.juros" [required]="false" (focusout)="atualizarValor()">
      </div>
      <div class="p-field">
       <label id="label-multa" for="multa">Multa</label>
-      <input id="multa" name="multa" #multa="ngModel" pInputText placeholder="Multa" [(ngModel)]="boleto.multa" [required]="false" (change)="atualizarValor()">
+      <input id="multa" name="multa" #multa="ngModel" pInputText currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  placeholder="Multa" [(ngModel)]="boleto.multa" [required]="false" (focusout)="atualizarValor()">
      </div>
      <div class="p-field">
       <label id="label-total" for="total">Total</label>
-      <input id="total" name="total" #total="ngModel" pInputText placeholder="Total" [(ngModel)]="boleto.total" [required]="true" [readonly]="true">
+      <input id="total" name="total" #total="ngModel" pInputText currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  placeholder="Total" [(ngModel)]="boleto.total" [required]="true" [readonly]="true">
      </div>
     </div>
    </form>
    <div class="ui-dialog-buttonpane ui-helper-clearfix">
     <button pButton icon="pi pi-check" (click)="salvar()" label="Salvar" style="margin-right: 2px;" [disabled]="!boletoForm.valid"></button>
     <button pButton icon="pi pi-times" (click)="confirmarExcluir()" label="Excluir" class="ui-button-secondary" style="margin-right: 2px;" *ngIf="boleto.id"></button>
-   </div>
+  </div>
 
   </p-panel>
    <p-confirmDialog #confirmacaoDialog header="Confirmação" icon="pi pi-exclamation-triangle">

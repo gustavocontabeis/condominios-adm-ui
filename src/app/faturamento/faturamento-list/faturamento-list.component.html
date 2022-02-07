@@ -24,7 +24,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-faturamento>
      <tr>
-      <td class="horizontal-compact" style="text-align: right;">{{faturamento.id}}</td>
+      <td class="horizontal-compact id" style="text-align: right;">{{faturamento.id}}</td>
       <td class="horizontal-compact">{{faturamento.periodo}}</td>
       <td class="horizontal-compact"><a [routerLink]="['/condominio/', faturamento.condominio.id]">{{faturamento.condominio.nome}}</a></td>
       <td>
