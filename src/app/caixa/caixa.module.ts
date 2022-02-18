@@ -13,6 +13,7 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
 import { CaixaService } from './caixa.service';
 import { NgxCurrencyModule } from "ngx-currency";
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 import { CaixaRoutingModule } from './caixa-routing.module';
 import { CaixaAddComponent } from './caixa-add/caixa-add.component';
@@ -24,7 +25,7 @@ import { CaixaListComponent } from './caixa-list/caixa-list.component';
   imports: [
     CommonModule, FormsModule,
     ToastModule, PanelModule, TableModule, ButtonModule, DropdownModule, InputTextModule, ConfirmDialogModule,
-    CaixaRoutingModule, InputMaskModule, NgxCurrencyModule
+    CaixaRoutingModule, InputMaskModule, NgxCurrencyModule, RadioButtonModule
   ],
   providers: [MessageService, ConfirmationService, CaixaService]
 })

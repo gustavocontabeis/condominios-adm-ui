@@ -14,7 +14,7 @@
      </div>
      <div class="p-field">
       <label id="label-data" for="data">Data</label>
-      <p-inputMask id="data" name="data" #data="ngModel" placeholder="Data" [(ngModel)]="caixa.data" [required]="true" mask="99/99/9999 99:99" ></p-inputMask>
+      <p-inputMask id="data" name="data" #data="ngModel" placeholder="Data" [(ngModel)]="caixa.data" [required]="true" mask="99/99/9999" ></p-inputMask>
      </div>
      <div class="p-field">
       <label id="label-centroDeCusto" for="centroDeCusto">Centro de custo</label>
@@ -37,12 +37,21 @@
       <input id="descricao" name="descricao" #descricao="ngModel" pInputText placeholder="Descrição" [(ngModel)]="caixa.descricao" [required]="true">
      </div>
      <div class="p-field">
-      <label id="label-valor" for="valor">Valor</label>
-      <input id="valor" name="valor" #valor="ngModel" pInputText currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Valor" [(ngModel)]="caixa.valor" [required]="true">
+        <label id="label-valor" for="valor">Fluxo</label>
+        <div>
+            Entrada
+            <p-radioButton name="fluxo" value="ENTRADA" [(ngModel)]="caixa.fluxo"></p-radioButton>
+            Saída
+            <p-radioButton name="fluxo" value="SAIDA" [(ngModel)]="caixa.fluxo"></p-radioButton>
+        </div>
      </div>
      <div class="p-field">
-      <label id="label-saldo" for="saldo">Saldo</label>
-      <input id="saldo" name="saldo" #saldo="ngModel" pInputText currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Saldo" [(ngModel)]="caixa.saldo" [required]="true">
+        <label id="label-valor" for="valor">Valor</label>
+        <input id="valor" name="valor" #valor="ngModel" pInputText currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Valor" [(ngModel)]="caixa.valor" [required]="true" (focusout)="buscarSaldo()">
+     </div>
+     <div class="p-field">
+        <label id="label-saldo" for="saldo">Saldo</label>
+        <input id="saldo" name="saldo" #saldo="ngModel" pInputText currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" placeholder="Saldo" [(ngModel)]="caixa.saldo" [required]="true">
      </div>
     </div>
    </form>

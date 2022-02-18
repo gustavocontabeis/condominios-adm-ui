@@ -36,7 +36,7 @@
       <td class="horizontal-compact" >{{condominio.numero}}</td>
       <td class="horizontal-compact" >{{condominio.bairro}}</td>
       <td class="horizontal-compact" >{{condominio.cidade}}</td>
-      <td class="horizontal-compact" ><a [routerLink]="['/condominio/sindico/', condominio.sindico.id]">{{condominio.sindico.pessoa.nome}}</a></td>
+      <td class="horizontal-compact" ><a [routerLink]="['/pessoa/pessoa-add/', condominio.sindico.id]">{{condominio.sindico.pessoa.nome}}</a></td>
       <td class="horizontal-compact" >
         <button pButton icon="pi pi-pencil" [routerLink]="['/condominio/condominio-add/', condominio.id]" title="Selecionar Condominio"></button>
         <button pButton icon="pi pi-list" [routerLink]="['/bloco/condominio/', condominio.id]" title="Selecionar Blocos"></button>

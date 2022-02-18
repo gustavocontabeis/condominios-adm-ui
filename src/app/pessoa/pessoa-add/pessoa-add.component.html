@@ -1,1 +1,35 @@
 <p>pessoa-add works!</p>
+<form #pessoaform="ngForm">
+    <div class="p-fluid" *ngif="pessoa">
+     <div class="p-field">
+      <label id="label-id" for="id">Id</label>
+      <input id="id" name="id" #id="ngModel" pInputText pkeyfilter="int" placeholder="Id" [(ngModel)]="pessoa.id" [required]="false" pattern="^\d+$">
+     </div>
+     <div class="p-field">
+      <label id="label-nome" for="nome">Nome</label>
+      <input id="nome" name="nome" #nome="ngModel" pInputText placeholder="Nome" [(ngModel)]="pessoa.nome" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-cpf" for="cpf">Cpf</label>
+      <input id="cpf" name="cpf" #cpf="ngModel" pInputText placeholder="Cpf" [(ngModel)]="pessoa.cpf" [required]="true">
+     </div>
+     <div class="p-field">
+      <label id="label-genero" for="genero">Genero</label>
+      <p-dropdown id="genero" name="genero" #genero="ngModel" [options]="generos" [(ngModel)]="pessoa.genero" [required]="true"></p-dropdown>
+     </div>
+     <div class="p-field">
+      <label id="label-nascimento" for="nascimento">Nascimento</label>
+      <input id="nascimento" name="nascimento" #nascimento="ngModel" pInputText placeholder="Nascimento" [(ngModel)]="pessoa.nascimento" [required]="true">
+     </div>
+    </div>
+   </form>
+   <div class="ui-dialog-buttonpane ui-helper-clearfix">
+    <button pbutton icon="pi pi-check" (click)="salvar()" label="Salvar" style="margin-right: 2px;" ></button><button pbutton icon="pi pi-times" (click)="confirmarExcluir()" label="Excluir" class="ui-button-secondary" style="margin-right: 2px;" *ngif="pessoa.id"></button>
+   </div>
+   <p-confirmDialog #confirmacaoDialog header="Confirmação" icon="pi pi-exclamation-triangle">
+    <p-footer>
+     <button type="button" pbutton icon="pi pi-times" label="Não" (click)="confirmacaoDialog.reject()"></button>
+     <button type="button" pbutton icon="pi pi-check" label="Sim" (click)="confirmacaoDialog.accept()"></button>
+    </p-footer>
+   </p-confirmDialog>
+   

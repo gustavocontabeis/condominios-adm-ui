@@ -56,5 +56,9 @@ export class CaixaService {
     return this.httpClient.get(this.apiUrl + '/centroDeCusto/' + idCentroDeCusto);
   }
 
+  ultimo(idCondominio: number) {
+    console.log('buscar iltimo', idCondominio);
+    return this.httpClient.get(this.apiUrl + '/last/' + idCondominio);
+  }
 }
 

@@ -12,6 +12,7 @@ export class Caixa {
 	para!: string;
 	cpfCnpj!: string;
 	descricao!: string;
+	fluxo!: string;
 	valor!: number;
 	saldo!: number;
 }

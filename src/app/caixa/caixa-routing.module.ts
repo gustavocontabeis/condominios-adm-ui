@@ -7,6 +7,7 @@ import { CaixaListComponent } from './caixa-list/caixa-list.component';
 const routes: Routes = [
   { path: 'caixa-add', component: CaixaAddComponent },
   { path: 'caixa-add/:id', component: CaixaAddComponent },
+  { path: 'caixa-add/condominio/:id_condominio', component: CaixaAddComponent },
   { path: 'caixa-filter', component: CaixaFilterComponent },
   { path: 'caixa-list', component: CaixaListComponent },
   { path: 'condominio/:id_condominio', component: CaixaListComponent },

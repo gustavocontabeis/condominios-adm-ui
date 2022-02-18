@@ -1,3 +1,10 @@
+<p-panel header="Caixa" >
+    <ng-template pTemplate="icons">
+        <button pButton class="p-panel-header-icon p-link" title="Adicionar caixa a este condomínio."
+        [routerLink]="['/caixa/caixa-add/condominio/', caixa.condominio.id]">
+            <span class="pi pi-plus-circle"></span>
+        </button>
+    </ng-template>
 <p-table [value]="caixas" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,15,20,50,100]" [lazy]="true" (onLazyLoad)="consultarPaginado($event)" responsiveLayout="scroll" [totalRecords]="totalRecords" sortMode="multiple" [showCurrentPageReport]="true" currentPageReportTemplate="Exibindo {first} até {last} de {totalRecords} registros.">
     <ng-template pTemplate="header">
      <tr>
@@ -28,10 +35,16 @@
       <th pSortableColumn="descricao">Descrição
        <p-sortIcon field="descricao"></p-sortIcon>
        <p-columnFilter type="text" field="descricao" display="menu"></p-columnFilter></th>
-      <th pSortableColumn="valor">Valor
-       <p-sortIcon field="valor"></p-sortIcon>
-       <p-columnFilter type="text" field="valor" display="menu"></p-columnFilter></th>
-      <th pSortableColumn="saldo">Saldo
+
+      <th pSortableColumn="fluxo">Fluxo
+       <p-sortIcon field="fluxo"></p-sortIcon>
+       <p-columnFilter type="text" field="fluxo" display="menu"></p-columnFilter></th>
+
+       <th pSortableColumn="valor">Valor
+        <p-sortIcon field="valor"></p-sortIcon>
+        <p-columnFilter type="text" field="valor" display="menu"></p-columnFilter></th>
+
+       <th pSortableColumn="saldo">Saldo
        <p-sortIcon field="saldo"></p-sortIcon>
        <p-columnFilter type="text" field="saldo" display="menu"></p-columnFilter></th>
       <th>&nbsp;</th>
@@ -48,10 +61,11 @@
       <td class="horizontal-compact">{{caixa.para}}</td>
       <td class="horizontal-compact">{{caixa.cpfCnpj}}</td>
       <td class="horizontal-compact">{{caixa.descricao}}</td>
+      <td class="horizontal-compact">{{caixa.fluxo}}</td>
       <td class="horizontal-compact">{{caixa.valor| currency:'BRL':true:'1.2-2'}}</td>
       <td class="horizontal-compact">{{caixa.saldo| currency:'BRL':true:'1.2-2'}}</td>
       <td><button pButton icon="pi pi-pencil" [routerLink]="['/caixa/caixa-add/', caixa.id]" title="Selecionar Caixa"></button></td>
      </tr>
     </ng-template>
    </p-table>
-   
+</p-panel>

@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'caixa', loadChildren: () => import('./caixa/caixa.module').then(m => m.CaixaModule)},
   { path: 'banco', loadChildren: () => import('./banco/banco.module').then(m => m.BancoModule)},
   { path: 'banco-lancamento', loadChildren: () => import('./banco-lancamento/banco-lancamento.module').then(m => m.BancoLancamentoModule)},
+  { path: 'pessoa', loadChildren: () => import('./pessoa/pessoa.module').then(m => m.PessoaModule)},
   { path: '', component: HomeComponent },
 ];
 
